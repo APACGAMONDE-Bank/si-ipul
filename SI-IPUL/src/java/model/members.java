@@ -6,8 +6,11 @@
 package model;
 
 import java.io.Serializable;
+import java.sql.PreparedStatement;
 import javax.persistence.Basic;
 import javax.persistence.Entity;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -103,8 +106,7 @@ public class members implements Serializable {
     public void setIsLogin(boolean isLogin) {
         this.isLogin = isLogin;
     }
-
-
+    
     @Override
     public int hashCode() {
         int hash = 0;
@@ -123,11 +125,6 @@ public class members implements Serializable {
             return false;
         }
         return true;
-    }
-
-    @Override
-    public String toString() {
-        return "model.member[usernameMb=" + usernameMb + "]";
     }
 
 }

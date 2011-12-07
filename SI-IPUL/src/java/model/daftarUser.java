@@ -5,18 +5,71 @@
 
 package model;
 
+import model.members;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Entity;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NoResultException;
+import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 /**
  *
  * @author yogi
  */
-@Entity
+
+
+public class daftarUser {
+
+    public daftarUser() {
+        emf = Persistence.createEntityManagerFactory("SI-IPULPU");
+    }
+    private EntityManagerFactory emf = null;
+
+    public EntityManager getEntityManager() {
+        return emf.createEntityManager();
+    }
+
+    public members getPengunjung(String USERNAMEMB){
+        members member = null;
+        EntityManager em = null;
+        try {
+            em = getEntityManager();
+            Query q = em.createQuery("SELECT object(o) FROM members as o WHERE o.USERNAMEMB = :USERNAMEMB");
+            q.setParameter("USERNAMEMB", USERNAMEMB);
+            member = (members) q.getSingleResult();
+        }catch(NoResultException e){
+            
+        }finally {
+            if (em != null) {
+                em.close();
+            }
+        }
+
+        return member;
+    }
+
+    public void addMembers(members member){
+        EntityManager em = null;
+        try {
+            em = getEntityManager();
+            em.getTransaction().begin();
+            em.persist(member);
+            em.getTransaction().commit();
+        } finally {
+            if (em != null) {
+                em.close();
+            }
+        }
+    }
+
+
+/*@Entity
 public class daftarUser implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -25,15 +78,15 @@ public class daftarUser implements Serializable {
 
     private String password;
 
-    private String username;
+    private String USERNAMEMB;
 
     public daftarUser() {
     }
 
-    public daftarUser(String idAkun, String password, String username) {
+    public daftarUser(String idAkun, String password, String USERNAMEMB) {
         this.idAkun = idAkun;
         this.password = password;
-        this.username = username;
+        this.USERNAMEMB = USERNAMEMB;
     }
 
     public String getIdAkun() {
@@ -45,11 +98,11 @@ public class daftarUser implements Serializable {
     }
 
     public String getUsername() {
-        return username;
+        return USERNAMEMB;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUsername(String USERNAMEMB) {
+        this.USERNAMEMB = USERNAMEMB;
     }
 
     @Override
@@ -75,6 +128,6 @@ public class daftarUser implements Serializable {
     @Override
     public String toString() {
         return "model.daftarUser[idAkun=" + idAkun + "]";
-    }
+    }*/
 
 }
