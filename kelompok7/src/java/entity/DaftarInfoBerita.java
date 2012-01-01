@@ -63,6 +63,25 @@ public class DaftarInfoBerita {
         return infoBerita;
     }
 
+    public infoBerita getIBOp (String operator){
+        infoBerita ib  = null;
+        EntityManager em = null;
+        try {
+            em = getEntityManager();
+            Query q = em.createQuery("SELECT object(o) FROM infoBerita as o WHERE o.operator = :operator");
+            q.setParameter("operator", operator);
+            ib = (infoBerita) q.getSingleResult();
+        }catch(NoResultException e){
+            
+        }finally {
+            if (em != null) {
+                em.close();
+            }
+        }
+
+        return ib;
+    }
+
     public infoBerita getInfoBerita (Long id){
         infoBerita ib  = null;
         EntityManager em = null;

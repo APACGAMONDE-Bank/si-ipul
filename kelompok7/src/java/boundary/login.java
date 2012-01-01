@@ -32,10 +32,10 @@ public login(){
 
     @Override
     protected void process() {
+        HttpSession session = getRequest().getSession();
         DaftarUser du = new DaftarUser();
         String username = getRequest().getParameter("username");
         String password = getRequest().getParameter("password");
-        HttpSession session = getRequest().getSession();
 
         if (validate_field()) {
             members member = du.getMember(username);

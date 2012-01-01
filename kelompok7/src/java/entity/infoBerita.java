@@ -15,10 +15,11 @@ public class infoBerita implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @ManyToOne
-    private operator operator;
+    //@ManyToOne
+    //private operator operator;
 
     private String infoBerita;
+    private String operator;
     private String title;
     private int picture;
 
@@ -29,7 +30,14 @@ public class infoBerita implements Serializable {
         this.id = id;
     }
 
-    public infoBerita(Long id, operator operator, String info, int picture) {
+    /*public infoBerita(Long id, operator operator, String info, int picture) {
+        this.id = id;
+        this.operator = operator;
+        this.infoBerita = info;
+        this.picture = picture;
+    }*/
+
+    public infoBerita(Long id, String operator, String info, int picture) {
         this.id = id;
         this.operator = operator;
         this.infoBerita = info;
@@ -40,11 +48,12 @@ public class infoBerita implements Serializable {
         return id;
     }
 
-   public operator getOperator() {
+   public String getOperator() {
         return operator;
     }
+   
 
-    public void setOperator(operator operator) {
+    public void setOperator(String operator) {
         this.operator = operator;
     }
 
