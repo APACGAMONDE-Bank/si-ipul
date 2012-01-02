@@ -1,5 +1,6 @@
 package boundary;
 
+import boundary.Boundary;
 import entity.DaftarInfoBerita;
 import entity.DaftarUser;
 import entity.infoBerita;
