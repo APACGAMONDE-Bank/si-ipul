@@ -11,6 +11,7 @@ public class DaftarUser {
 
     private int jumlahMember = -1;
     private int jumlahOperator = -1;
+    private int jumlahUser = -1;
 
     public DaftarUser() {
         emf = Persistence.createEntityManagerFactory("kelompok7PU");
@@ -24,6 +25,27 @@ public class DaftarUser {
     /**
      * @return the jumlahMember
      */
+    public int getJumlahUser() {
+
+        if (jumlahUser == -1) {
+            EntityManager em = null;
+            try {
+                em = getEntityManager();
+                Query q = em.createQuery("SELECT count(o) FROM members as o");
+                Number jumlah = (Number) q.getSingleResult();
+                jumlahUser = jumlah.intValue();
+
+            } catch (javax.persistence.EntityNotFoundException e) {
+            } finally {
+                if (em != null) {
+                    em.close();
+                }
+            }
+        } 
+
+        return jumlahUser;
+    }
+    
     public int getJumlahMember() {
 
         if (jumlahMember == -1) {
@@ -101,6 +123,25 @@ public class DaftarUser {
         }
 
         return member;
+    }
+    
+    public admin getAdmin(String username){
+        admin ad = null;
+        EntityManager em = null;
+        try {
+            em = getEntityManager();
+            Query q = em.createQuery("SELECT object(o) FROM admin as o WHERE o.username = :username");
+            q.setParameter("username", username);
+            ad = (admin) q.getSingleResult();
+        }catch(NoResultException e){
+            
+        }finally {
+            if (em != null) {
+                em.close();
+            }
+        }
+
+        return ad;
     }
     
     public operator getOperator(String username){

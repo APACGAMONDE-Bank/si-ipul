@@ -25,7 +25,7 @@ public class activity extends Boundary {
     @Override
     protected void process() {
       setMessage("");
-        DaftarUser dl = new DaftarUser();
+        DaftarLapangan dl = new DaftarLapangan();
         if(validate_activity()){
             List<lapangan> i = dl.lapanganTerbaru();
             getRequest().setAttribute("daftar_lapangan", i.iterator());
@@ -41,7 +41,7 @@ public class activity extends Boundary {
         }
 
     private boolean validate_activity(){
-        DaftarUser dl = new DaftarUser();
+        DaftarLapangan dl = new DaftarLapangan();
         int xx = dl.getJumlahLapangan();
         
         if( xx == 0){

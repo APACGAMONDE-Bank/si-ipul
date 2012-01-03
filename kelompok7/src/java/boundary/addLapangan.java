@@ -2,10 +2,12 @@ package boundary;
 
 import entity.DaftarLapangan;
 import entity.lapangan;
+import entity.members;
 import entity.operator;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.http.HttpSession;
 
 public class addLapangan extends Boundary {
     private operator operator;
@@ -23,11 +25,14 @@ public class addLapangan extends Boundary {
         if (getRequest().getParameter("act") != null && getRequest().getParameter("act").equals("add")) {
             try {
                 if (validate_field()) {
+                        HttpSession session = getRequest().getSession();
+                        operator op = (operator) session.getAttribute("username");
                         DaftarLapangan dl = new DaftarLapangan();
-                        lapangan l = dl.getLapangan(operator);
+                        lapangan l = dl.getLapangan(op);
                         if (l == null) {
                             l = new lapangan();
                             l.setAddressLap(getRequest().getParameter("address"));
+                            l.setOperator(op);
                             dl.tambahLapangan(l);
                         }
                 } else {
@@ -44,13 +49,10 @@ public class addLapangan extends Boundary {
     }
 
     boolean validate_field() {
-        
-        String username = getRequest().getParameter("username");
-        String password = getRequest().getParameter("password");
+
         String address = getRequest().getParameter("address");
-        String handphone = getRequest().getParameter("handphone");
-        String email = getRequest().getParameter("email");
-        if(username == null||password == null||address == null||handphone == null||email == null){
+
+        if(address == null){
             return false;
         /*}
         if(username.trim().equals("")||password.trim().equals("")||address.trim().equals("")||handphone.trim().equals("")||email.trim().equals("")){

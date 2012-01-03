@@ -9,11 +9,11 @@
     </head>
     <body>
         <h2><%=(request.getAttribute("message"))%></h2>
-        <form action="addLapangan" method="POST">
+        <form action="add_lapangan" method="POST">
             <label>Alamat : </label><br />
-            <input type="text" name="address" value="" /><br />
+            <input type="text" name="address" value="" /> <input type="hidden" name="act" value="add" /><br />
             <input type="submit" value="Tambah" />
         </form><br/>
-        <a href="homeMember">Kembali Ke Home</a>
+        <a href="homeOperator">Kembali Ke Home</a>
     </body>
 </html>

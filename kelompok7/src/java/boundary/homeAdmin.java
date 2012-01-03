@@ -15,12 +15,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpSession;
 
-public class homeMember extends Boundary {
+public class homeAdmin extends Boundary {
     private operator operator;
 
-    public homeMember() {
+    public homeAdmin() {
         super();
-        setTemplate("/WEB-INF/homeMember.jsp");
+        setTemplate("/WEB-INF/homeAdmin.jsp");
     }
 
     @Override
@@ -35,7 +35,7 @@ public class homeMember extends Boundary {
             try {
                 getResponse().sendRedirect("login");
             } catch (IOException ex) {
-                Logger.getLogger(homeMember.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(homeAdmin.class.getName()).log(Level.SEVERE, null, ex);
             }
         
         }

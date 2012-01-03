@@ -4,11 +4,15 @@
  */
 package boundary;
 
+import entity.DaftarInfoBerita;
 import entity.DaftarUser;
+import entity.admin;
+import entity.infoBerita;
 import entity.members;
 import entity.operator;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -36,26 +40,39 @@ public login(){
         DaftarUser du = new DaftarUser();
         String username = getRequest().getParameter("username");
         String password = getRequest().getParameter("password");
+        //password = enkripsi.getEnkripsi(password);
+        DaftarInfoBerita dib = new DaftarInfoBerita();
+            List<infoBerita> i = dib.sepuluhInfoTerbaru();
+            getRequest().setAttribute("daftar_berita", i.iterator());
 
         if (validate_field()) {
             members member = du.getMember(username);
-            //operator op = du.getOperator(username);
+            String d = member.getNameMb();
+            operator op = du.getOperator(username);
+            admin ad = du.getAdmin(username);
             //if (du.getMember(username).equals(username)&& password.equals(du.getMember(password))) {
             if (username.equals(member.getUsername()) && password.equals(member.getPassword())) {
-                session.setAttribute("uname", username);
+                session.setAttribute("username", username);
                 try {
                     getResponse().sendRedirect("homeMember");
                 } catch (IOException ex) {
                     Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
                 }
-              /*  } else if 
+              } else if 
                     (username.equals(op.getUsername()) && password.equals(op.getPassword())){
-                    session.setAttribute("uname", username);
+                    session.setAttribute("username", username);
                 try {
                     getResponse().sendRedirect("homeOperator");
                 } catch (IOException ex) {
                     Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
-                }*/
+                }
+                } else if 
+                    (username.equals(ad.getUsername()) && password.equals(ad.getPassword())){
+                try {
+                    getResponse().sendRedirect("homeAdmin");
+                } catch (IOException ex) {
+                    Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
+                }
                     
             } else {
                 try {
@@ -65,8 +82,6 @@ public login(){
                 }
             }
         }
-        
-
     }
     
     boolean validate_field() {
@@ -81,6 +96,29 @@ public login(){
         }
 
         return true;
+    }
+    
+    
+    
+    /*public void setSession() {
+        HttpSession session = getRequest().getSession();
+        DaftarUser du = new DaftarUser();
+        String username = getRequest().getParameter("username");
+        String password = getRequest().getParameter("password");
+        members member = du.getMember(username);
+        String d = member.getNameMb();
+        operator op = du.getOperator(username);
+            if (username.equals(member.getUsername()) && password.equals(member.getPassword())) {
+                String name = member.getNameMb();
+                String address = member.getAddressMb();
+                String email = member.getEmailMb();
+                String hp = member.getHandphoneMb();
+                session.setAttribute("username", username);
+                session.setAttribute("name", name);
+                session.setAttribute("address", address);
+                session.setAttribute("email", email);
+                session.setAttribute("hp", hp);
+        }
     }
     
 /*protected void processRequest(HttpServletRequest request, HttpServletResponse response)  

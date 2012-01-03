@@ -9,11 +9,9 @@
     </head>
     <body>
         <h2><%=(request.getAttribute("message"))%></h2>
-        <form action="register" method="POST">
-            <label>Username : </label><br />
-            <input type="text" name="username" value="" /> <input type="hidden" name="act" value="add" /><br />
+        <form action="add_berita" method="POST">
             <label>Title : </label><br />
-            <input type="text" name="title" value="" /><br />
+            <input type="text" name="title" value="" /><br /> <input type="hidden" name="act" value="add" /><br />
             <label>Berita : </label><br />
             <textarea name="berita" rows="4" cols="20">
             </textarea><br/>

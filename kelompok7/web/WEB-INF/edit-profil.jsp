@@ -18,31 +18,31 @@
             <tbody>
                 <tr>
                     <td>Nama    </td>
-                    <td><input type="text" name="name" /></td>
+                    <td><input type="text" name="name" value=""/></td>
                 </tr>
                 <tr>
                     <td>Alamat  </td>
-                    <td><input type="text" name="address" /></td>
+                    <td><input type="text" name="address" value=""/></td>
                 </tr>
                 <tr>
                     <td>Telepon </td>
-                    <td><input type="text" name="handphone" /></td>
+                    <td><input type="text" name="handphone" value=""/></td>
                 </tr>
                 <tr>
                     <td>Email   </td>
-                    <td><input type="text" name="email" /></td>
+                    <td><input type="text" name="email" value=""/></td>
                 </tr>
                 <tr>
                     <td>Username    </td>
-                    <td><input type="text" name="username" /></td>
+                    <td><input type="text" name="username" value=""/></td>
                 </tr>
                 <tr>
                     <td>Password    </td>
-                    <td><input type="password" name="password" /></td>
+                    <td><input type="password" name="password" value=""/></td>
                 </tr>
                 <tr>
                     <td>Confirm Password    </td>
-                    <td><input type="password" name="confirm password" /></td>
+                    <td><input type="password" name="confirm password" value=""/></td>
                 </tr>
             </tbody>
         </table>

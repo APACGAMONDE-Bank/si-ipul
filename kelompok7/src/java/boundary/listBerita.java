@@ -26,7 +26,9 @@ public class listBerita extends Boundary {
       setMessage("");
         DaftarInfoBerita dib = new DaftarInfoBerita();
         if(validate_berita()){
-            List<infoBerita> i = dib.sepuluhInfoTerbaru();
+            //List<infoBerita> i = dib.sepuluhInfoTerbaru();
+            //List<infoBerita> i = (List<infoBerita>) dib.getIBOp(null);
+            List<infoBerita> i = (List<infoBerita>) dib.getIBOp(null);
             getRequest().setAttribute("daftar_berita", i.iterator());
         }
         else{

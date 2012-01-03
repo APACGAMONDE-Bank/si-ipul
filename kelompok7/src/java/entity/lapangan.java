@@ -13,7 +13,7 @@ public class lapangan implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long IDLAP;
 
     @ManyToOne
     private operator operator;
@@ -24,18 +24,18 @@ public class lapangan implements Serializable {
      public lapangan() {
     }
    
-     public lapangan(Long id) {
-        this.id = id;
+     public lapangan(Long IDLAP) {
+        this.IDLAP = IDLAP;
     }
 
-    public lapangan(Long id, operator operator, String address) {
-        this.id = id;
+    public lapangan(Long IDLAP, operator operator, String address) {
+        this.IDLAP = IDLAP;
         this.operator = operator;
         this.addressLap = address;
     }
 
     public Long getId() {
-        return id;
+        return IDLAP;
     }
 
     public operator getOperator() {
@@ -65,18 +65,18 @@ public class lapangan implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (IDLAP != null ? IDLAP.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
+        // TODO: Warning - this method won't work in the case the IDLAP fields are not set
         if (!(object instanceof lapangan)) {
             return false;
         }
         lapangan other = (lapangan) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.IDLAP == null && other.IDLAP != null) || (this.IDLAP != null && !this.IDLAP.equals(other.IDLAP))) {
             return false;
         }
         return true;
@@ -84,7 +84,7 @@ public class lapangan implements Serializable {
 
     @Override
     public String toString() {
-        return "entity.lapangan[ id=" + id + " ]";
+        return "entity.lapangan[ IDLAP=" + IDLAP + " ]";
     }
 
 }

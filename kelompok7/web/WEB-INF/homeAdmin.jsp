@@ -14,11 +14,8 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
         <form id="form1" name="form1" method="post" action="homeMember">
-        <h2>SELAMAT DATANG
+        <h2>SELAMAT DATANG ADMIN
 <table width="200" border="0">
-  <tr>
-      <td><a href="homeMember">${user.getNameMb}</a></td>
-  </tr>
 </table>
         </h2>
   <h2></h2>
@@ -26,9 +23,6 @@
 </form>
         <br>
         <a href ="logout">Logout</a>
-        <a href ="edit-profil">Edit Profil</a>
-        <a href ="list_activity">Activity</a>
-        <a href ="list_lapangan">Daftar Lapangan</a>
-        <a href ="booking_online">Booking Lapangan</a>
+        <a href ="addUser">Add User</a>
     </body>
 </html>

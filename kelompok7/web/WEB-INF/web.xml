@@ -9,7 +9,7 @@
         <servlet-class>boundary.fieldKosong</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>addLapangan</servlet-name>
+        <servlet-name>add_lapangan</servlet-name>
         <servlet-class>boundary.addLapangan</servlet-class>
     </servlet>
     <servlet>
@@ -29,13 +29,77 @@
         <servlet-class>boundary.listLapangan</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>addBerita</servlet-name>
+        <servlet-name>add_berita</servlet-name>
         <servlet-class>boundary.addBerita</servlet-class>
     </servlet>
-    <servlet-mapping>
-        <servlet-name>register</servlet-name>
-        <url-pattern>/register</url-pattern>
-    </servlet-mapping>
+    <servlet>
+        <servlet-name>logout</servlet-name>
+        <servlet-class>helper.logout</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>activity</servlet-name>
+        <servlet-class>boundary.activity</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>listLapanganKosong</servlet-name>
+        <servlet-class>boundary.listLapanganKosong</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>viewLapangan</servlet-name>
+        <servlet-class>boundary.viewLapangan</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>homeOperator</servlet-name>
+        <servlet-class>boundary.homeOperator</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>listBerita</servlet-name>
+        <servlet-class>boundary.listBerita</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>listBeritaKosong</servlet-name>
+        <servlet-class>boundary.listBeritaKosong</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>bookingOnline</servlet-name>
+        <servlet-class>boundary.bookingOnline</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>editBerita</servlet-name>
+        <servlet-class>boundary.editBerita</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>listActivity</servlet-name>
+        <servlet-class>boundary.listActivity</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>listActivityKosong</servlet-name>
+        <servlet-class>boundary.listActivityKosong</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>listBooking</servlet-name>
+        <servlet-class>boundary.listBooking</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>listBookingKosong</servlet-name>
+        <servlet-class>boundary.listBookingKosong</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>homeAdmin</servlet-name>
+        <servlet-class>boundary.homeAdmin</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>addUser</servlet-name>
+        <servlet-class>boundary.addUser</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>listUser</servlet-name>
+        <servlet-class>boundary.listUser</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>listUserKosong</servlet-name>
+        <servlet-class>boundary.listUserKosong</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>fieldKosong</servlet-name>
         <url-pattern>/error</url-pattern>
@@ -49,20 +113,92 @@
         <url-pattern>/homeMember</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>editProfil</servlet-name>
-        <url-pattern>/edit-profil</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>addLapangan</servlet-name>
-        <url-pattern>/add_lapangan</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>listLapangan</servlet-name>
         <url-pattern>/list_lapangan</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>addBerita</servlet-name>
+        <servlet-name>logout</servlet-name>
+        <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>activity</servlet-name>
+        <url-pattern>/activity</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>listLapanganKosong</servlet-name>
+        <url-pattern>/listLapanganKosong</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>homeOperator</servlet-name>
+        <url-pattern>/homeOperator</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>listBerita</servlet-name>
+        <url-pattern>/list_berita</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>listBeritaKosong</servlet-name>
+        <url-pattern>/listBeritaKosong</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>register</servlet-name>
+        <url-pattern>/register</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>viewLapangan</servlet-name>
+        <url-pattern>/viewLapangan</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>add_lapangan</servlet-name>
+        <url-pattern>/add_lapangan</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>add_berita</servlet-name>
         <url-pattern>/add_berita</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>bookingOnline</servlet-name>
+        <url-pattern>/booking_online</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>editBerita</servlet-name>
+        <url-pattern>/edit-berita</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>editProfil</servlet-name>
+        <url-pattern>/edit-profil</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>listActivityKosong</servlet-name>
+        <url-pattern>/listActivityKosong</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>listActivity</servlet-name>
+        <url-pattern>/list_activity</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>listBooking</servlet-name>
+        <url-pattern>/list_booking</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>listBookingKosong</servlet-name>
+        <url-pattern>/listBookingKosong</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>homeAdmin</servlet-name>
+        <url-pattern>/homeAdmin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>addUser</servlet-name>
+        <url-pattern>/addUser</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>listUser</servlet-name>
+        <url-pattern>/list_user</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>listUserKosong</servlet-name>
+        <url-pattern>/listUserKosong</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -10,13 +10,13 @@ import java.util.logging.Logger;
 import javax.servlet.http.HttpSession;
 import org.eclipse.persistence.sessions.Session;
 
-public class registrasi extends Boundary {
+public class addUser extends Boundary {
 
 
 
-    public registrasi(){
+    public addUser(){
         super();
-        setTemplate("/WEB-INF/registrasi.jsp");
+        setTemplate("/WEB-INF/addUser.jsp");
     }
 
     @Override
@@ -29,7 +29,6 @@ public class registrasi extends Boundary {
                 if (validate_field()) {
                         DaftarUser dm = new DaftarUser();
                         String stats = getRequest().getParameter("tp");
-                        //HttpSession session = getRequest().getSession();
                         int stat = Integer.parseInt(stats);
                         {if (stat == 1) {
                             {
@@ -42,7 +41,6 @@ public class registrasi extends Boundary {
                             m.setEmailMb(getRequest().getParameter("email"));
                             m.setStatMb(stat);
                             dm.tambahMember(m);
-                            //session.setAttribute("username", username);
                             }
                          }
                         
@@ -65,9 +63,9 @@ public class registrasi extends Boundary {
                 } else {
                     getResponse().sendRedirect("fieldKosong");
                 }
-                getResponse().sendRedirect("homeMember");
+                getResponse().sendRedirect("homeAdmin");
             } catch (IOException ex) {
-                Logger.getLogger(registrasi.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(addUser.class.getName()).log(Level.SEVERE, null, ex);
             }
         }               
     }

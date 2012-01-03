@@ -1,9 +1,9 @@
+<%@page import="boundary.viewLapangan"%>
 <%@page import="entity.DaftarLapangan"%>
 <%@page import="entity.lapangan"%>
 <%@page import="java.util.Iterator"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="e" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@taglib uri="http://java.sun.com/jsf/core" prefix="h" %>
-<%@taglib uri="http://java.sun.com/jsf/html" prefix="f" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
    "http://www.w3.org/TR/html4/loose.dtd">
 
@@ -21,29 +21,19 @@
         <table border="1">
             <thead>
                 <tr>
-                    <th>No</th>
                     <th>Alamat</th>
+                    <th>Status</th>
                 </tr>
             </thead>
             <tbody>
-                <%
-                Iterator<lapangan> i = (Iterator<lapangan>) request.getAttribute("daftar_lapangan");
-                int no = 0;
-                while(i.hasNext()){
-                    lapangan lap = i.next();
-                    //Pengunjung pengunjung = lap.getPengunjung();
-                    no++;
-                %>
-                
+                    
                 <tr>
-                    <td><%=(no)%></td>
-                    <td><%=(lap.getAddressLap())%></td>
-                    <td><a href="view_lapangan">show</a></td>
-                    <td><a href="booking_online">booking</a></td>
+          <e:forEach items="${lapangan}" var="ev">
+                    <td>${ev.ADDRESSLAP}</td>
+                    <td>${ev.STATLAP}</td>
+                    <td><a href="view_lapangan=${ev.IDLAP}">show</a></td>
+            </e:forEach>
                 </tr>
-                <%
-                }
-                %>
             </tbody>
         </table>
     </body>

@@ -5,8 +5,11 @@
 
 package boundary;
 
+import boundary.Boundary;
+import entity.DaftarInfoBerita;
 import entity.members;
 import entity.DaftarUser;
+import entity.infoBerita;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.logging.Level;
@@ -25,7 +28,7 @@ public class editBerita extends Boundary {
 
     public editBerita(){
         super();
-        setTemplate("/WEB-INF/edit-profil.jsp");
+        setTemplate("/WEB-INF/edit-berita.jsp");
     }
 
     @Override
@@ -36,14 +39,13 @@ public class editBerita extends Boundary {
         if (getRequest().getParameter("act") != null && getRequest().getParameter("act").equals("add")) {
             try {
                 if (validate_field()) {
-                        DaftarUser dm = new DaftarUser();
-                        members m = dm.getMember(getRequest().getParameter("username"));
-                            m.setUsername(getRequest().getParameter("username"));
-                            m.setPassword(getRequest().getParameter("password"));
-                            m.setAddressMb(getRequest().getParameter("address"));
-                            m.setHandphoneMb(getRequest().getParameter("handphone"));
-                            m.setEmailMb(getRequest().getParameter("email"));
-                            dm.editMember(m);
+                        
+                        DaftarInfoBerita dm = new DaftarInfoBerita();
+                        Long ids = Long.parseLong(getRequest().getParameter("id"));
+                        infoBerita m = dm.getInfoBerita(ids);
+                            m.setInfoBerita(getRequest().getParameter("infoBerita"));
+                            m.setTitle(getRequest().getParameter("title"));
+                            dm.editInfoBerita(m);
                 } else {
                     getResponse().sendRedirect("fieldKosong");
                 }

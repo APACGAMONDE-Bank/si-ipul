@@ -5,11 +5,11 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Form Registrasi SI-IPUL</title>
+        <title>Add User SI-IPUL</title>
     </head>
     <body>
         <h2><%=(request.getAttribute("message"))%></h2>
-        <form action="register" method="POST">
+        <form action="addUser" method="POST">
             <label>Username : </label><br />
             <input type="text" name="username" value="" /> <input type="hidden" name="act" value="add" /> <br />
             <label>Password : </label><br />
@@ -29,6 +29,5 @@
             </label>
             <input type="submit" value="Register" />
         </form><br/>
-        <a href="">Kembali Ke Halaman Login</a>
     </body>
 </html>

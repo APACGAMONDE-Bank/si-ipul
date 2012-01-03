@@ -15,6 +15,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -32,28 +33,35 @@ public class editProfil extends Boundary {
     protected void process() {
 
         setMessage("");
-
-        if (getRequest().getParameter("act") != null && getRequest().getParameter("act").equals("add")) {
-            try {
+        HttpSession session = getRequest().getSession();
                 if (validate_field()) {
                         DaftarUser dm = new DaftarUser();
-                        members m = dm.getMember(getRequest().getParameter("username"));
-                            m.setUsername(getRequest().getParameter("username"));
+                        String uname = (String) session.getAttribute("username");
+                        members m = dm.getMember(getRequest().getParameter(uname));
                             m.setPassword(getRequest().getParameter("password"));
                             m.setAddressMb(getRequest().getParameter("address"));
                             m.setHandphoneMb(getRequest().getParameter("handphone"));
                             m.setEmailMb(getRequest().getParameter("email"));
                             dm.editMember(m);
                 } else {
+                try {
                     getResponse().sendRedirect("fieldKosong");
-                }
-                getResponse().sendRedirect("home");
-            } catch (IOException ex) {
-                Logger.getLogger(addBerita.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
+                } catch (IOException ex) {
+                    Logger.getLogger(editProfil.class.getName()).log(Level.SEVERE, null, ex);
+                     }
+                    }
     }
 
+
+    boolean check() {
+     HttpSession session = getRequest().getSession();
+        if (session.getAttribute("username") == null) {
+            //members uname = (members) session.getAttribute("username");
+            return false;
+        }
+        return true;
+    }        
+            
     boolean validate_field() {
         
         String username = getRequest().getParameter("username");
@@ -62,9 +70,6 @@ public class editProfil extends Boundary {
         String handphone = getRequest().getParameter("handphone");
         String email = getRequest().getParameter("email");
         if(username == null||password == null||address == null||handphone == null||email == null){
-            return false;
-        }
-        if(username.trim().equals("")||password.trim().equals("")||address.trim().equals("")||handphone.trim().equals("")||email.trim().equals("")){
             return false;
         }
 

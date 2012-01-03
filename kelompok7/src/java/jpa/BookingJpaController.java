@@ -1,6 +1,8 @@
 package jpa;
 
-import entity.lapangan;
+
+import entity.booking;
+import entity.operator;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -11,9 +13,9 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import jpa.exceptions.NonexistentEntityException;
 
-public class LapanganJpaController {
+public class BookingJpaController {
 
-    public LapanganJpaController() {
+    public BookingJpaController() {
         emf = Persistence.createEntityManagerFactory("kelompok7PU");
     }
     private EntityManagerFactory emf = null;
@@ -22,12 +24,12 @@ public class LapanganJpaController {
         return emf.createEntityManager();
     }
 
-    public void create(lapangan lapangan) {
+    public void create(booking book) {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            em.persist(lapangan);
+            em.persist(book);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -36,19 +38,19 @@ public class LapanganJpaController {
         }
     }
 
-    public void edit(lapangan lapangan) throws NonexistentEntityException, Exception {
+    public void edit(booking book) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            lapangan = em.merge(lapangan);
+            book = em.merge(book);
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                Long id = lapangan.getId();
-                if (findLapangan(id) == null) {
-                    throw new NonexistentEntityException("Lapangan dengan id " + id + " no longer exists.");
+                Long id = book.getid();
+                if (findbook(id) == null) {
+                    throw new NonexistentEntityException("The book with id " + id + " no longer exists.");
                 }
             }
             throw ex;
@@ -64,14 +66,14 @@ public class LapanganJpaController {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            lapangan lap;
+            booking book;
             try {
-                lap = em.getReference(lapangan.class, id);
-                lap.getId();
+                book = em.getReference(booking.class, id);
+                book.getid();
             } catch (EntityNotFoundException enfe) {
-                throw new NonexistentEntityException("Lapangan dengan id " + id + " no longer exists.", enfe);
+                throw new NonexistentEntityException("The book with id " + id + " no longer exists.", enfe);
             }
-            em.remove(lap);
+            em.remove(book);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -80,19 +82,19 @@ public class LapanganJpaController {
         }
     }
 
-    public List<lapangan> findLapanganEntities() {
-        return findLapanganEntities(true, -1, -1);
+    public List<booking> findbookEntities() {
+        return findbookEntities(true, -1, -1);
     }
 
-    public List<lapangan> findLapanganEntities(int maxResults, int firstResult) {
-        return findLapanganEntities(false, maxResults, firstResult);
+    public List<booking> findbookEntities(int maxResults, int firstResult) {
+        return findbookEntities(false, maxResults, firstResult);
     }
 
-    private List<lapangan> findLapanganEntities(boolean all, int maxResults, int firstResult) {
+    private List<booking> findbookEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(lapangan.class));
+            cq.select(cq.from(booking.class));
             Query q = em.createQuery(cq);
             if (!all) {
                 q.setMaxResults(maxResults);
@@ -104,20 +106,20 @@ public class LapanganJpaController {
         }
     }
 
-    public lapangan findLapangan(Long id) {
+    public booking findbook(Long id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(lapangan.class, id);
+            return em.find(booking.class, id);
         } finally {
             em.close();
         }
     }
 
-    public int getLapanganCount() {
+    public int getbookCount() {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<lapangan> rt = cq.from(lapangan.class);
+            Root<booking> rt = cq.from(booking.class);
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();
@@ -125,5 +127,4 @@ public class LapanganJpaController {
             em.close();
         }
     }
-
 }

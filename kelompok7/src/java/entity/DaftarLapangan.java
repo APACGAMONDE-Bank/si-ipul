@@ -49,8 +49,7 @@ public class DaftarLapangan {
         EntityManager em = null;
         try {
             em = getEntityManager();
-            Query q = em.createQuery("SELECT object(o) FROM lapangan as o ORDER BY o.id DESC");
-            q.setMaxResults(10);
+            Query q = em.createQuery("SELECT object(o) FROM lapangan as o ORDER BY o.IDLAP");
             lapangan = q.getResultList();
 
         } catch (javax.persistence.EntityNotFoundException e) {
@@ -69,6 +68,25 @@ public class DaftarLapangan {
             em = getEntityManager();
             Query q = em.createQuery("SELECT object(o) FROM lapangan as o WHERE o.operator = :operator");
             q.setParameter("operator", operator);
+            l = (lapangan) q.getSingleResult();
+        }catch(NoResultException e){
+            
+        }finally {
+            if (em != null) {
+                em.close();
+            }
+        }
+
+        return l;
+    }
+
+    public lapangan getLapanganId (Long IDLAP){
+        lapangan l  = null;
+        EntityManager em = null;
+        try {
+            em = getEntityManager();
+            Query q = em.createQuery("SELECT object(o) FROM lapangan as o WHERE o.IDLAP = :IDLAP");
+            q.setParameter("IDLAP", IDLAP);
             l = (lapangan) q.getSingleResult();
         }catch(NoResultException e){
             

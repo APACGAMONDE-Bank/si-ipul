@@ -23,12 +23,13 @@ public class members implements Serializable {
     //@ManyToOne
     //private members member;
 
-    private String password;
-    private String nameMb;
-    private String addressMb;
-    private String handphoneMb;
-    private String emailMb;
-    private int statMb;
+    private String PASSWORD;
+    private String NAMEMB;
+    private String ADDRESSMB;
+    private String HANDPHONEMB;
+    private String EMAILMB;
+    private int BOOKING;
+    private int STATMB;
 
      public members() {
     }
@@ -37,18 +38,18 @@ public class members implements Serializable {
         this.username = username;
     }
 
-    public members(String username, String password) {
+    public members(String username, String PASSWORD) {
         this.username = username;
-        this.password = password;
+        this.PASSWORD = PASSWORD;
     }
     
-    public members(String username, String password, String name, String address, String handphone, String email) {
+    public members(String username, String PASSWORD, String name, String address, String handphone, String email) {
         this.username = username;
-        this.password = password;
-        this.nameMb = name;
-        this.addressMb = address;
-        this.handphoneMb = handphone;
-        this.emailMb = email;
+        this.PASSWORD = PASSWORD;
+        this.NAMEMB = name;
+        this.ADDRESSMB = address;
+        this.HANDPHONEMB = handphone;
+        this.EMAILMB = email;
         
     }
     
@@ -61,51 +62,59 @@ public class members implements Serializable {
     }
 
     public String getPassword() {
-        return password;
+        return PASSWORD;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPassword(String PASSWORD) {
+        this.PASSWORD = PASSWORD;
     }
 
     public String getNameMb() {
-        return nameMb;
+        return NAMEMB;
     }
 
-    public void setNameMb(String nameMb) {
-        this.nameMb = nameMb;
+    public void setNameMb(String NAMEMB) {
+        this.NAMEMB = NAMEMB;
     }
 
     public String getAddressMb() {
-        return addressMb;
+        return ADDRESSMB;
     }
 
-    public void setAddressMb(String addressMb) {
-        this.addressMb = addressMb;
+    public void setAddressMb(String ADDRESSMB) {
+        this.ADDRESSMB = ADDRESSMB;
     }
 
     public String getHandphoneMb() {
-        return handphoneMb;
+        return HANDPHONEMB;
     }
 
-    public void setHandphoneMb(String handphoneMb) {
-        this.handphoneMb = handphoneMb;
+    public void setHandphoneMb(String HANDPHONEMB) {
+        this.HANDPHONEMB = HANDPHONEMB;
     }
 
     public String getEmailMb() {
-        return emailMb;
+        return EMAILMB;
     }
 
-    public void setEmailMb(String emailMb) {
-        this.emailMb = emailMb;
+    public void setEmailMb(String EMAILMB) {
+        this.EMAILMB = EMAILMB;
     }
 
+    public int getBooking() {
+        return STATMB;
+    }
+
+    public void setBooking(int BOOKING) {
+        this.BOOKING = BOOKING;
+    }
+    
     public int getStatMb() {
-        return statMb;
+        return STATMB;
     }
 
-    public void setStatMb(int statMb) {
-        this.statMb = statMb;
+    public void setStatMb(int STATMB) {
+        this.STATMB = STATMB;
     }
 
     @Override

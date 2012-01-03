@@ -25,16 +25,18 @@ public class listLapangan extends Boundary {
       setMessage("");
         DaftarLapangan dl = new DaftarLapangan();
         if(validate_lapangan()){
-            List<DaftarLapangan> getLapangan = (List<DaftarLapangan>) dl.getLapangan(operator);
-            getRequest().setAttribute("daftarLapangan", getLapangan.iterator());
-        /*}else{
-            try {
-                getResponse().sendRedirect("homeMember");
-            } catch (IOException ex) {
-                Logger.getLogger(homeMember.class.getName()).log(Level.SEVERE, null, ex);
-            }*/
+            List<lapangan> i = dl.lapanganTerbaru();
+            getRequest().setAttribute("daftar_lapangan", i.iterator());
         }
-    }
+        else{
+            try {
+                getResponse().sendRedirect("listLapanganKosong");
+            } catch (IOException ex) {
+                Logger.getLogger(listLapangan.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            }
+        }
 
     private boolean validate_lapangan(){
         DaftarLapangan dl = new DaftarLapangan();
