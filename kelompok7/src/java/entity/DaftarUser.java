@@ -6,6 +6,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.NoResultException;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
+import jpa.exceptions.NonexistentEntityException;
 
 public class DaftarUser {
 
@@ -227,20 +228,27 @@ public class DaftarUser {
 
     }
     
-    public void editMember(members member) {
-
+    public void editMember(members member) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            em.persist(member);
+            member = em.merge(member);
             em.getTransaction().commit();
+        } catch (Exception ex) {
+            String msg = ex.getLocalizedMessage();
+            if (msg == null || msg.length() == 0) {
+                String id = member.getUsername();
+                if (getJumlahMember() == 0) {
+                    throw new NonexistentEntityException("The member with username" + id + " no longer exists.");
+                }
+            }
+            throw ex;
         } finally {
             if (em != null) {
                 em.close();
             }
         }
-
     }
     
     public void editOperator(operator op) {

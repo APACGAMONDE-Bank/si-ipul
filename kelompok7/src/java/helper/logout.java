@@ -15,8 +15,8 @@ public class logout extends Boundary {
     @Override
     protected void process() {
         HttpSession session = getRequest().getSession();
-        if (session.getAttribute("uname") != null) {
-            session.removeAttribute("uname");
+        if (session.getAttribute("username") != null) {
+            session.removeAttribute("username");
             session.invalidate();
             try {
                 getResponse().sendRedirect("login");

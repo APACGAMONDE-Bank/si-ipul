@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import jpa.exceptions.NonexistentEntityException;
 
 /**
  *
@@ -33,26 +34,42 @@ public class editProfil extends Boundary {
     protected void process() {
 
         setMessage("");
-        HttpSession session = getRequest().getSession();
-                if (validate_field()) {
-                        DaftarUser dm = new DaftarUser();
-                        String uname = (String) session.getAttribute("username");
-                        members m = dm.getMember(getRequest().getParameter(uname));
-                            m.setPassword(getRequest().getParameter("password"));
-                            m.setAddressMb(getRequest().getParameter("address"));
-                            m.setHandphoneMb(getRequest().getParameter("handphone"));
-                            m.setEmailMb(getRequest().getParameter("email"));
-                            dm.editMember(m);
-                } else {
-                try {
-                    getResponse().sendRedirect("fieldKosong");
-                } catch (IOException ex) {
-                    Logger.getLogger(editProfil.class.getName()).log(Level.SEVERE, null, ex);
-                     }
+        if (getRequest().getParameter("act") != null && getRequest().getParameter("act").equals("add")) {
+            HttpSession session = getRequest().getSession();
+            String n = getRequest().getParameter("name");
+            String p = getRequest().getParameter("password");
+            String a = getRequest().getParameter("address");
+            String h = getRequest().getParameter("handphone");
+            String e = getRequest().getParameter("email");
+            try {    
+                    if (validate_field()) {
+                            DaftarUser dm = new DaftarUser();
+                            String uname = (String) session.getAttribute("username");
+                            members m = dm.getMember(getRequest().getParameter(uname));
+                                m.setNameMb(n);
+                                m.setPassword(p);
+                                m.setAddressMb(a);
+                                m.setHandphoneMb(h);
+                                m.setEmailMb(e);
+                    try {
+                        dm.editMember(m);
+                    } catch (NonexistentEntityException ex) {
+                        Logger.getLogger(editProfil.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (Exception ex) {
+                        Logger.getLogger(editProfil.class.getName()).log(Level.SEVERE, null, ex);
                     }
+                    }
+                    else{
+                        getResponse().sendRedirect("fieldKosong");
+                        }
+                    //getResponse().sendRedirect("homeMember");
+            } catch (IOException ex) {
+                Logger.getLogger(editProfil.class.getName()).log(Level.SEVERE, null, ex);
+            }
+    
+        }
     }
-
-
+    
     boolean check() {
      HttpSession session = getRequest().getSession();
         if (session.getAttribute("username") == null) {
@@ -64,12 +81,11 @@ public class editProfil extends Boundary {
             
     boolean validate_field() {
         
-        String username = getRequest().getParameter("username");
         String password = getRequest().getParameter("password");
         String address = getRequest().getParameter("address");
         String handphone = getRequest().getParameter("handphone");
         String email = getRequest().getParameter("email");
-        if(username == null||password == null||address == null||handphone == null||email == null){
+        if(password == null||address == null||handphone == null||email == null){
             return false;
         }
 

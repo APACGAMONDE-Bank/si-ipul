@@ -28,14 +28,13 @@ public class listUser extends Boundary {
             List<members> i = (List<members>) dib.getMember(null);
             List<operator> ii = (List<operator>) dib.getOperator(null);
             getRequest().setAttribute("daftar_user", i.iterator());
-        }
+                }
         else{
             try {
                 getResponse().sendRedirect("listUserKosong");
             } catch (IOException ex) {
                 Logger.getLogger(listUser.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            
+                }
             }
         }
 
@@ -46,7 +45,6 @@ public class listUser extends Boundary {
         if( xx == 0){
             return false;
         }
-
         return true;
     }  
 }

@@ -27,7 +27,7 @@
                 <td></td>
                 <label><input type="radio" name="tp" value="0" />Operator</label>
             </label>
-            <input type="submit" value="Register" />
+            <input type="submit" value="Submit" />
         </form><br/>
         <a href="">Kembali Ke Halaman Login</a>
     </body>

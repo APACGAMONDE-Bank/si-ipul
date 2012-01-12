@@ -106,7 +106,7 @@ public abstract class Boundary extends HttpServlet {
     public void display(){
         try {
             if (this.template == null) {
-                this.template = "/WEB-INF/jsps/" + this.getClass().getName() + ".jsp";
+                this.template = "/WEB-INF/" + this.getClass().getName() + ".jsp";
             }
             request.setAttribute("message", message);
             RequestDispatcher requestDispatcher = this.request.getRequestDispatcher(this.template);

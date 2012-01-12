@@ -13,7 +13,7 @@
         <servlet-class>boundary.addLapangan</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>editProfil</servlet-name>
+        <servlet-name>edit-profil</servlet-name>
         <servlet-class>boundary.editProfil</servlet-class>
     </servlet>
     <servlet>
@@ -100,6 +100,10 @@
         <servlet-name>listUserKosong</servlet-name>
         <servlet-class>boundary.listUserKosong</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>login3</servlet-name>
+        <servlet-class>boundary.login3</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>fieldKosong</servlet-name>
         <url-pattern>/error</url-pattern>
@@ -145,10 +149,6 @@
         <url-pattern>/register</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>viewLapangan</servlet-name>
-        <url-pattern>/viewLapangan</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>add_lapangan</servlet-name>
         <url-pattern>/add_lapangan</url-pattern>
     </servlet-mapping>
@@ -165,7 +165,7 @@
         <url-pattern>/edit-berita</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>editProfil</servlet-name>
+        <servlet-name>edit-profil</servlet-name>
         <url-pattern>/edit-profil</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
@@ -199,6 +199,14 @@
     <servlet-mapping>
         <servlet-name>listUserKosong</servlet-name>
         <url-pattern>/listUserKosong</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>viewLapangan</servlet-name>
+        <url-pattern>/view_lapangan</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>login3</servlet-name>
+        <url-pattern>/login3</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

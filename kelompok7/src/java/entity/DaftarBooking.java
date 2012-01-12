@@ -45,14 +45,14 @@ public class DaftarBooking {
         return jumlahBooking;
     }
     
-    public int getJumlahBookingOp(String operator) {
+    public int getJumlahBookingOp(String username) {
 
         if (jumlahBooking == -1) {
             EntityManager em = null;
             try {
                 em = getEntityManager();
-                Query q = em.createQuery("SELECT count(o) booking FROM booking o, lapangan l WHERE o.LAP= l.IDLAP and l.OPERATOR_USERNAME = :username");
-                q.setParameter("username", operator);
+                Query q = em.createQuery("SELECT count(o) booking FROM booking o, lapangan l WHERE o.lap = l.IDLAP and l.operator = :username");
+                q.setParameter("username", username);
                 Number jumlah = (Number) q.getSingleResult();
                 jumlahBooking = jumlah.intValue();
 
@@ -103,14 +103,14 @@ public class DaftarBooking {
         return l;
     }
     
-    public booking getBO (String members){
-        booking ib  = null;
+    public List<DaftarBooking> getBO(String username) {
+        List<DaftarBooking> booking = null;
         EntityManager em = null;
         try {
             em = getEntityManager();
-            Query q = em.createQuery("SELECT object(o) FROM booking o WHERE o.members= :username");
-            q.setParameter("username", members);
-            ib = (booking) q.getSingleResult();
+            Query q = em.createQuery("SELECT object(o) FROM booking as o WHERE o.members = :username");
+            q.setParameter("username", username);
+            booking = q.getResultList();
         }catch(NoResultException e){
             
         }finally {
@@ -119,17 +119,17 @@ public class DaftarBooking {
             }
         }
 
-        return ib;
+        return booking;
     }
     
-    public booking getBOp (String operator){
-        booking ib  = null;
+    public List<DaftarBooking> getBOp (String username){
+        List<DaftarBooking> booking = null;
         EntityManager em = null;
         try {
             em = getEntityManager();
-            Query q = em.createQuery("SELECT object(o) FROM booking o, lapangan l WHERE o.LAP= l.IDLAP and l.OPERATOR_USERNAME = :username");
-            q.setParameter("username", operator);
-            ib = (booking) q.getSingleResult();
+            Query q = em.createQuery("SELECT object(o) FROM booking o, lapangan l WHERE o.lap= l.IDLAP and l.operator = :username");
+            q.setParameter("username", username);
+            booking = q.getResultList();
         }catch(NoResultException e){
             
         }finally {
@@ -138,7 +138,7 @@ public class DaftarBooking {
             }
         }
 
-        return ib;
+        return booking;
     }
     
     

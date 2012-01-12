@@ -31,7 +31,7 @@ public class listActivity extends Boundary {
         HttpSession session = getRequest().getSession();
         String mem = (String) session.getAttribute("username");
         if(validate_book()){
-            List<booking> i = (List<booking>) dib.getBO(mem);
+            List<DaftarBooking> i = dib.getBO(mem);
             getRequest().setAttribute("daftar_book", i.iterator());
         }
         else{

@@ -9,7 +9,7 @@
     </head>
     <body>
         <table border="1">
-            <form method="post" action="editProfil">
+            <form method="post" action="edit-profil">
             <thead>
                
                     <th>Edit Profile</th>
@@ -18,7 +18,7 @@
             <tbody>
                 <tr>
                     <td>Nama    </td>
-                    <td><input type="text" name="name" value=""/></td>
+                    <td><input type="text" name="name" value=""/></td><input type="hidden" name="act" value="add" />
                 </tr>
                 <tr>
                     <td>Alamat  </td>
@@ -33,17 +33,10 @@
                     <td><input type="text" name="email" value=""/></td>
                 </tr>
                 <tr>
-                    <td>Username    </td>
-                    <td><input type="text" name="username" value=""/></td>
-                </tr>
-                <tr>
                     <td>Password    </td>
                     <td><input type="password" name="password" value=""/></td>
                 </tr>
-                <tr>
-                    <td>Confirm Password    </td>
-                    <td><input type="password" name="confirm password" value=""/></td>
-                </tr>
+                
             </tbody>
         </table>
         <input type="submit" value="Edit" />

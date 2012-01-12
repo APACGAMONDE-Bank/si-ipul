@@ -27,25 +27,37 @@ public class addBerita extends Boundary {
 
          if (getRequest().getParameter("act") != null && getRequest().getParameter("act").equals("add")) {
              try{
-                if (validate_field()) {
+                //if (validate_field()) {
                         DaftarInfoBerita dib = new DaftarInfoBerita();
-                        String pics = getRequest().getParameter("picture");
-                        int pic = Integer.parseInt(pics);
+                        if (getRequest().getParameter("picture") != null){
+                                String pics = getRequest().getParameter("picture");
+                                int pic = Integer.parseInt(pics);
+                                HttpSession session = getRequest().getSession();
+                                String op = (String) session.getAttribute("operator");
+                                infoBerita m = dib.getIBOp("operator"); 
+                        //if (m == null) {
+                            m = new infoBerita();
+                            m.setOperator(op);
+                            m.setInfoBerita(getRequest().getParameter("berita"));
+                            m.setPicture(pic);
+                            m.setTitle(getRequest().getParameter("title"));                            
+                            dib.tambahInfoBerita(m);}
+                        else {int pic = 0;
                         HttpSession session = getRequest().getSession();
                         String op = (String) session.getAttribute("operator");
                         infoBerita m = dib.getIBOp("operator"); 
                         //if (m == null) {
                             m = new infoBerita();
                             m.setOperator(op);
-                            m.setInfoBerita(getRequest().getParameter("infoBerita"));
+                            m.setInfoBerita(getRequest().getParameter("berita"));
                             m.setPicture(pic);
                             m.setTitle(getRequest().getParameter("title"));                            
                             dib.tambahInfoBerita(m);
-                           
-                } else {
-                    getResponse().sendRedirect("fieldKosong");
-                }
-                    getResponse().sendRedirect("homeMember");
+                        }
+                //} else {
+                //    getResponse().sendRedirect("fieldKosong");
+                //}
+                    getResponse().sendRedirect("homeOperator");
                 } catch (IOException ex) {
                     Logger.getLogger(addBerita.class.getName()).log(Level.SEVERE, null, ex);
                 }

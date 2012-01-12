@@ -46,7 +46,8 @@ public class addUser extends Boundary {
                         
                         {if (stat == 0) {
                         operator o = dm.getOperator(getRequest().getParameter("username"));
-                        if (o == null) {
+                        //if (o == null) 
+                        {
                             o = new operator();
                             o.setUsername(getRequest().getParameter("username"));
                             o.setPassword(getRequest().getParameter("password"));
@@ -80,10 +81,10 @@ public class addUser extends Boundary {
         String email = getRequest().getParameter("email");
         if(username == null||password == null||address == null||handphone == null||email == null){
             return false;
-        /*}
-        if(username.trim().equals("")||password.trim().equals("")||address.trim().equals("")||handphone.trim().equals("")||email.trim().equals("")){
-            return false;*/
         }
+        /*if(username.trim().equals("")||password.trim().equals("")||address.trim().equals("")||handphone.trim().equals("")||email.trim().equals("")){
+            return false;
+        }*/
 
         return true;
     }

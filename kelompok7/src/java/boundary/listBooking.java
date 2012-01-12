@@ -29,9 +29,9 @@ public class listBooking extends Boundary {
       setMessage("");
         DaftarBooking dib = new DaftarBooking();
         HttpSession session = getRequest().getSession();
-        String mem = (String) session.getAttribute("username");
+        String op = (String) session.getAttribute("username");
         if(validate_book()){
-            List<booking> i = (List<booking>) dib.getBOp(mem);
+            List<DaftarBooking> i = dib.getBOp(op);
             getRequest().setAttribute("daftar_book", i.iterator());
         }
         else{

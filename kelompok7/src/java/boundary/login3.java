@@ -26,9 +26,9 @@ import javax.servlet.http.HttpSession;
  *
  * @author yogi
  */
-public class login extends Boundary {
+public class login3 extends Boundary {
 
-public login(){
+public login3(){
         super();
         setTemplate("/WEB-INF/index.jsp");
     }
@@ -51,38 +51,35 @@ public login(){
             operator op = du.getOperator(username);
             admin ad = du.getAdmin(username);
             //if (du.getMember(username).equals(username)&& password.equals(du.getMember(password))) {
-            if (username.equals(member.getUsername()) && password.equals(member.getPassword())) {
+            if (username.equals(member.getUsername()) && password.equals(member.getPassword())||
+                    username.equals(op.getUsername()) && password.equals(op.getPassword())||
+                    username.equals(ad.getUsername()) && password.equals(ad.getPassword())) {
                 session.setAttribute("username", username);
-                try {
-                    getResponse().sendRedirect("homeMember");
-                } catch (IOException ex) {
-                    Logger.getLogger(login3.class.getName()).log(Level.SEVERE, null, ex);
-                }
-              } else if 
-                    (username.equals(op.getUsername()) && password.equals(op.getPassword())){
-                    session.setAttribute("username", username);
+                if (member.getStatMb() == 0){
+                    try {
+                        getResponse().sendRedirect("homeMember");
+                    } catch (IOException ex) {
+                        Logger.getLogger(login3.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                else if (member.getStatMb() == 1){
                 try {
                     getResponse().sendRedirect("homeOperator");
                 } catch (IOException ex) {
                     Logger.getLogger(login3.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                } else if 
-                    (username.equals(ad.getUsername()) && password.equals(ad.getPassword())){
-                try {
-                    getResponse().sendRedirect("homeAdmin");
-                } catch (IOException ex) {
-                    Logger.getLogger(login3.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                    
-            } else {
-                try {
-                    getResponse().sendRedirect("login");
-                } catch (IOException ex) {
-                    Logger.getLogger(login3.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                     else {
+            try {
+                getResponse().sendRedirect("login");
+            } catch (IOException ex) {
+                Logger.getLogger(login3.class.getName()).log(Level.SEVERE, null, ex);
+            }
             }
         }
+        }
     }
+    
     
     boolean validate_field() {
         
