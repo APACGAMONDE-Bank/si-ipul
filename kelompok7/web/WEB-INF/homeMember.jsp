@@ -12,12 +12,16 @@
 
 <html>
     <head>
+        <%
+String username=(String) session.getAttribute("name");
+if(username==null) username="";
+%>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
         <form id="form1" name="form1" method="post" action="homeMember">
-        <h2>SELAMAT DATANG
+        <h2>SELAMAT DATANG <%=username%>
 <table width="200" border="0">
   <tr>
-      <td><a href="homeMember">${user.getNameMb}</a></td>
+      <td><a href="homeMember"></a></td>
   </tr>
 </table>
         </h2>

@@ -12,9 +12,12 @@ import java.io.IOException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.http.HttpSession;
 
 public class listBerita extends Boundary {
     private operator operator;
+    HttpSession session = getRequest().getSession();
+    String op = (String) session.getAttribute("username.username");
 
     public listBerita() {
         super();
@@ -26,9 +29,7 @@ public class listBerita extends Boundary {
       setMessage("");
         DaftarInfoBerita dib = new DaftarInfoBerita();
         if(validate_berita()){
-            //List<infoBerita> i = dib.sepuluhInfoTerbaru();
-            //List<infoBerita> i = (List<infoBerita>) dib.getIBOp(null);
-            List<infoBerita> i = (List<infoBerita>) dib.getIBOp(null);
+            List<infoBerita> i = (List<infoBerita>) dib.getIBOp(op);
             getRequest().setAttribute("daftar_berita", i.iterator());
         }
         else{
@@ -43,7 +44,7 @@ public class listBerita extends Boundary {
 
     private boolean validate_berita(){
         DaftarInfoBerita dib = new DaftarInfoBerita();
-        int xx = dib.getJumlahInfoBerita();
+        int xx = dib.countIBOp(op);
         
         if( xx == 0){
             return false;

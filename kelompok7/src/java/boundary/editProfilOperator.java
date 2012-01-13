@@ -1,12 +1,9 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package boundary;
 
 import entity.members;
 import entity.DaftarUser;
+import entity.operator;
+import helper.check;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -18,18 +15,20 @@ import jpa.exceptions.NonexistentEntityException;
  *
  * @author yogi
  */
-public class editProfil extends Boundary {
+
+public class editProfilOperator extends Boundary {
    
 
-    public editProfil(){
+    public editProfilOperator(){
         super();
-        setTemplate("/WEB-INF/edit-profil.jsp");
+        setTemplate("/WEB-INF/edit-profil-op.jsp");
     }
 
     @Override
     protected void process() {
 
         setMessage("");
+        if (check()){
         if (getRequest().getParameter("act") != null && getRequest().getParameter("act").equals("add")) {
             HttpSession session = getRequest().getSession();
             String n = getRequest().getParameter("name");
@@ -40,20 +39,18 @@ public class editProfil extends Boundary {
             try {    
                     if (validate_field()) {
                             DaftarUser dm = new DaftarUser();
-                            UserJpaController d = new UserJpaController();
-                            //String uname = (String) session.getAttribute("username");
-                            members m = (members) session.getAttribute("username");
-                                m.setNameMb(n);
+                            operator m = (operator) session.getAttribute("username");
+                                m.setNameOp(n);
                                 m.setPassword(p);
-                                m.setAddressMb(a);
-                                m.setHandphoneMb(h);
-                                m.setEmailMb(e);
+                                m.setAddressOp(a);
+                                m.setHandphoneOp(h);
+                                m.setEmailOp(e);
                     try {
-                        d.edit(m);
+                        dm.editOperator(m);
                     } catch (NonexistentEntityException ex) {
-                        Logger.getLogger(editProfil.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(editProfilOperator.class.getName()).log(Level.SEVERE, null, ex);
                     } catch (Exception ex) {
-                        Logger.getLogger(editProfil.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(editProfilOperator.class.getName()).log(Level.SEVERE, null, ex);
                     }
                     }
                     else{
@@ -61,19 +58,25 @@ public class editProfil extends Boundary {
                         }
                     //getResponse().sendRedirect("homeMember");
             } catch (IOException ex) {
-                Logger.getLogger(editProfil.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(editProfilOperator.class.getName()).log(Level.SEVERE, null, ex);
             }
     
+            }
+        }
+        try {
+            getResponse().sendRedirect("login");
+        } catch (IOException ex) {
+            Logger.getLogger(editProfilOperator.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
     boolean check() {
-     HttpSession session = getRequest().getSession();
-        if (session.getAttribute("username") == null) {
-            //members uname = (members) session.getAttribute("username");
-            return false;
+        DaftarUser dm = new DaftarUser();
+        HttpSession session = getRequest().getSession();
+        if (dm.getOperator("username") != null ) {
+            return true;
         }
-        return true;
+        return false;
     }        
             
     boolean validate_field() {

@@ -53,7 +53,7 @@
         <servlet-class>boundary.homeOperator</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>listBerita</servlet-name>
+        <servlet-name>list_berita</servlet-name>
         <servlet-class>boundary.listBerita</servlet-class>
     </servlet>
     <servlet>
@@ -101,8 +101,24 @@
         <servlet-class>boundary.listUserKosong</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>login3</servlet-name>
-        <servlet-class>boundary.login3</servlet-class>
+        <servlet-name>deleteUser</servlet-name>
+        <servlet-class>boundary.deleteUser</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>loginOperator</servlet-name>
+        <servlet-class>boundary.loginOperator</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>loginAdmin</servlet-name>
+        <servlet-class>boundary.loginAdmin</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>delete-berita</servlet-name>
+        <servlet-class>boundary.deleteBerita</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>editProfilOp</servlet-name>
+        <servlet-class>boundary.editProfilOperator</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>fieldKosong</servlet-name>
@@ -137,7 +153,7 @@
         <url-pattern>/homeOperator</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>listBerita</servlet-name>
+        <servlet-name>list_berita</servlet-name>
         <url-pattern>/list_berita</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
@@ -205,8 +221,24 @@
         <url-pattern>/view_lapangan</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>login3</servlet-name>
-        <url-pattern>/login3</url-pattern>
+        <servlet-name>deleteUser</servlet-name>
+        <url-pattern>/delete-user</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>loginOperator</servlet-name>
+        <url-pattern>/loginOp</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>loginAdmin</servlet-name>
+        <url-pattern>/loginAd</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>delete-berita</servlet-name>
+        <url-pattern>/delete-berita</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>editProfilOp</servlet-name>
+        <url-pattern>/edit-profil-op</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

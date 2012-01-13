@@ -39,7 +39,7 @@
                     <td><%=(no)%></td>
                     <td><%=(lap.getAddressLap())%></td>
                     <td><a href="view_lapangan">show</a></td>
-                    <td><a href="booking_online">booking</a></td>
+                    <td><a href="booking_online"<%=(lap.getId())%>>booking</a></td>
                 </tr>
                 <%
                 }

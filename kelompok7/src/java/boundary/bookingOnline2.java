@@ -1,25 +1,19 @@
 package boundary;
 
 import entity.DaftarBooking;
-import entity.DaftarLapangan;
-import entity.DaftarUser;
-import entity.lapangan;
-import entity.members;
-import entity.operator;
 import entity.booking;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpSession;
-import sun.misc.Request;
 
-public class bookingOnline extends Boundary {
-
+public class bookingOnline2 extends Boundary {
 
 
-    public bookingOnline(){
+
+    public bookingOnline2(){
         super();
-        setTemplate("/WEB-INF/booking.jsp");
+        setTemplate("/WEB-INF/booking2.jsp");
     }
 
     @Override
@@ -33,9 +27,8 @@ public class bookingOnline extends Boundary {
                         DaftarBooking db = new DaftarBooking();
                         booking m = new booking();
                         int jams = Integer.parseInt(getRequest().getParameter("jam"));
-                        //lapangan idLap = (lapangan) session.getAttribute(idLaps);
                             m.setMembers(session.getAttribute("username.username"));
-                            //m.setLap(session.getAttribute("lapangan"));
+                            
                             m.setLap(getRequest().getParameter("idLap"));
                             m.setJam(jams);
                             db.tambahBooking(m);

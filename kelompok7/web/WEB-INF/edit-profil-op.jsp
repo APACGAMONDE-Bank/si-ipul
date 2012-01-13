@@ -15,7 +15,7 @@ String h=(String) session.getAttribute("hp");
     </head>
     <body>
         <table border="1">
-            <form method="post" action="edit-profil">
+            <form method="post" action="edit-profil-op">
             <thead>
                
                     <th>Edit Profile</th>

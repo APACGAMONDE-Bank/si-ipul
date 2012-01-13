@@ -1,14 +1,11 @@
 package boundary;
 
-import boundary.Boundary;
 import entity.DaftarUser;
 import entity.members;
 import entity.operator;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.servlet.http.HttpSession;
-import org.eclipse.persistence.sessions.Session;
 
 public class registrasi extends Boundary {
 
@@ -65,7 +62,7 @@ public class registrasi extends Boundary {
                 } else {
                     getResponse().sendRedirect("fieldKosong");
                 }
-                getResponse().sendRedirect("homeMember");
+                getResponse().sendRedirect("login");
             } catch (IOException ex) {
                 Logger.getLogger(registrasi.class.getName()).log(Level.SEVERE, null, ex);
             }

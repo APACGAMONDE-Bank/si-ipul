@@ -1,5 +1,6 @@
 package entity;
 
+import entity.operator;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -202,7 +203,7 @@ public class DaftarUser {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            em.persist(member);
+            em.remove(member);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -218,7 +219,7 @@ public class DaftarUser {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            em.persist(op);
+            em.remove(op);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -251,19 +252,27 @@ public class DaftarUser {
         }
     }
     
-    public void editOperator(operator op) {
+    public void editOperator(operator op) throws NonexistentEntityException, Exception {
 
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            em.persist(op);
+            op = em.merge(op);
             em.getTransaction().commit();
+        } catch (Exception ex) {
+            String msg = ex.getLocalizedMessage();
+            if (msg == null || msg.length() == 0) {
+                String id = op.getUsername();
+                if (getJumlahMember() == 0) {
+                    throw new NonexistentEntityException("The operator with username" + id + " no longer exists.");
+                }
+            }
+            throw ex;
         } finally {
             if (em != null) {
                 em.close();
             }
         }
-
     }
 }

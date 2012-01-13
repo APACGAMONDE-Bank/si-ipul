@@ -37,10 +37,10 @@
                 %>
             </tbody>
         </table>
-            <a href="loginOp">Operator</a>
+            <a href="login">Member</a>
             <a href="loginAd">Admin</a>
         <h1>Login</h1>
-        <form method ="post" action="login">
+        <form method ="post" action="loginOp">
             <fieldset>
             Username:
             <input type="text" name="username" />

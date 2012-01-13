@@ -6,11 +6,10 @@ package boundary;
 
 import entity.DaftarLapangan;
 import entity.DaftarUser;
-import entity.lapangan;
 import entity.members;
 import entity.operator;
+import helper.check;
 import java.io.IOException;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpSession;
@@ -28,8 +27,9 @@ public class homeMember extends Boundary {
         HttpSession session = getRequest().getSession();
         members user = new members();
         DaftarUser du = new DaftarUser();
-        if (session.getAttribute("username") != null) {
-            String username = (String) session.getAttribute("username");
+        //if (check()){
+        if (session.getAttribute("username") != null ) {
+            String username = (String) session.getAttribute("username.username");
             user = du.getMember(username);
         } else {
             try {
@@ -40,7 +40,16 @@ public class homeMember extends Boundary {
         
         }
     }
-
+        
+        boolean check() {
+        DaftarUser dm = new DaftarUser();
+        HttpSession session = getRequest().getSession();
+        if (dm.getMember("username.username") != null ) {
+            return true;
+        }
+        return false;
+    }  
+    
     private boolean validate_lapangan(){
         DaftarLapangan dl = new DaftarLapangan();
         int xx = dl.getJumlahLapangan();

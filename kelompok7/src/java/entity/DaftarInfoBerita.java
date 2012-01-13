@@ -70,7 +70,7 @@ public class DaftarInfoBerita {
             em = getEntityManager();
             Query q = em.createQuery("SELECT object(o) FROM infoBerita as o WHERE o.operator = :operator");
             q.setParameter("operator", operator);
-            ib = (infoBerita) q.getSingleResult();
+            ib = (infoBerita) q.getResultList();
         }catch(NoResultException e){
             
         }finally {
@@ -80,6 +80,26 @@ public class DaftarInfoBerita {
         }
 
         return ib;
+    }
+    
+    public int countIBOp (String operator){
+        infoBerita ib  = null;
+        EntityManager em = null;
+        try {
+            em = getEntityManager();
+            Query q = em.createQuery("COUNT object(o) FROM infoBerita as o WHERE o.operator = :operator");
+            q.setParameter("operator", operator);
+            Number jumlah = (Number) q.getSingleResult();
+            jumlahInfoBerita = jumlah.intValue();
+        }catch(NoResultException e){
+            
+        }finally {
+            if (em != null) {
+                em.close();
+            }
+        }
+
+        return jumlahInfoBerita;
     }
 
     public infoBerita getInfoBerita (Long id){
@@ -117,13 +137,13 @@ public class DaftarInfoBerita {
 
     }
 
-    public void hapusInfoBerita(infoBerita ib) {
+    public void hapusInfoBerita(String ib) {
 
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            em.persist(ib);
+            em.remove(ib);
             em.getTransaction().commit();
         } finally {
             if (em != null) {

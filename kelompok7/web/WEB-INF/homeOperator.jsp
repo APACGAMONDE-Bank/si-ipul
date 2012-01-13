@@ -17,7 +17,7 @@
         <h1>Hello Operator</h1>
         <br>
         <a href ="logout">Logout</a>
-        <a href ="edit-profil">Edit Profil</a>
+        <a href ="edit-profil-op">Edit Profil</a>
         <a href ="list_berita">Berita</a>
         <a href ="list_booking">Booking</a>
         <a href ="add_berita">Tambah Berita</a>

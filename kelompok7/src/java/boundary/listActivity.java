@@ -6,15 +6,12 @@ package boundary;
 
 
 import entity.DaftarBooking;
-import entity.booking;
-import entity.members;
 import entity.operator;
 import java.io.IOException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpSession;
-import org.eclipse.persistence.sessions.Session;
 
 public class listActivity extends Boundary {
     private operator operator;
@@ -29,7 +26,7 @@ public class listActivity extends Boundary {
       setMessage("");
         DaftarBooking dib = new DaftarBooking();
         HttpSession session = getRequest().getSession();
-        String mem = (String) session.getAttribute("username");
+        String mem = (String) session.getAttribute("username.username");
         if(validate_book()){
             List<DaftarBooking> i = dib.getBO(mem);
             getRequest().setAttribute("daftar_book", i.iterator());

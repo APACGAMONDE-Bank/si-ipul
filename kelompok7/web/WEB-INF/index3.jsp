@@ -38,9 +38,9 @@
             </tbody>
         </table>
             <a href="loginOp">Operator</a>
-            <a href="loginAd">Admin</a>
+            <a href="login">Member</a>
         <h1>Login</h1>
-        <form method ="post" action="login">
+        <form method ="post" action="loginAd">
             <fieldset>
             Username:
             <input type="text" name="username" />

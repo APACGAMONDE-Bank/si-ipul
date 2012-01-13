@@ -6,11 +6,9 @@ package boundary;
 
 import entity.DaftarLapangan;
 import entity.DaftarUser;
-import entity.lapangan;
 import entity.members;
 import entity.operator;
 import java.io.IOException;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpSession;
@@ -29,7 +27,7 @@ public class homeAdmin extends Boundary {
         members user = new members();
         DaftarUser du = new DaftarUser();
         if (session.getAttribute("username") != null) {
-            String username = (String) session.getAttribute("username");
+            String username = (String) session.getAttribute("username.username");
             user = du.getMember(username);
         } else {
             try {
@@ -37,7 +35,6 @@ public class homeAdmin extends Boundary {
             } catch (IOException ex) {
                 Logger.getLogger(homeAdmin.class.getName()).log(Level.SEVERE, null, ex);
             }
-        
         }
     }
 

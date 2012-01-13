@@ -6,20 +6,12 @@ package boundary;
 
 import entity.DaftarInfoBerita;
 import entity.DaftarUser;
-import entity.admin;
 import entity.infoBerita;
 import entity.members;
-import entity.operator;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -47,38 +39,23 @@ public login(){
 
         if (validate_field()) {
             members member = du.getMember(username);
-            String d = member.getNameMb();
-            operator op = du.getOperator(username);
-            admin ad = du.getAdmin(username);
-            //if (du.getMember(username).equals(username)&& password.equals(du.getMember(password))) {
             if (username.equals(member.getUsername()) && password.equals(member.getPassword())) {
-                session.setAttribute("username", username);
+                session.setAttribute("username", member.getUsername());
+                session.setAttribute("name", member.getNameMb());
+                session.setAttribute("hp", member.getHandphoneMb());
+                session.setAttribute("email", member.getEmailMb());
+                session.setAttribute("address", member.getAddressMb());
                 try {
                     getResponse().sendRedirect("homeMember");
                 } catch (IOException ex) {
-                    Logger.getLogger(login3.class.getName()).log(Level.SEVERE, null, ex);
-                }
-              } else if 
-                    (username.equals(op.getUsername()) && password.equals(op.getPassword())){
-                    session.setAttribute("username", username);
-                try {
-                    getResponse().sendRedirect("homeOperator");
-                } catch (IOException ex) {
-                    Logger.getLogger(login3.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                } else if 
-                    (username.equals(ad.getUsername()) && password.equals(ad.getPassword())){
-                try {
-                    getResponse().sendRedirect("homeAdmin");
-                } catch (IOException ex) {
-                    Logger.getLogger(login3.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
                 }
                     
             } else {
                 try {
                     getResponse().sendRedirect("login");
                 } catch (IOException ex) {
-                    Logger.getLogger(login3.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }
