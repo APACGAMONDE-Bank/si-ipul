@@ -1,11 +1,9 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package boundary;
 
 
 import entity.DaftarInfoBerita;
+import entity.DaftarUser;
 import entity.infoBerita;
 import entity.operator;
 import java.io.IOException;
@@ -16,9 +14,7 @@ import javax.servlet.http.HttpSession;
 
 public class listBerita extends Boundary {
     private operator operator;
-    HttpSession session = getRequest().getSession();
-    String op = (String) session.getAttribute("username.username");
-
+   
     public listBerita() {
         super();
         setTemplate("/WEB-INF/listBerita.jsp");
@@ -27,9 +23,12 @@ public class listBerita extends Boundary {
     @Override
     protected void process() {
       setMessage("");
+       HttpSession session = getRequest().getSession();
+       String op = (String) session.getAttribute("username");
         DaftarInfoBerita dib = new DaftarInfoBerita();
-        if(validate_berita()){
-            List<infoBerita> i = (List<infoBerita>) dib.getIBOp(op);
+        //if(check()){
+            if(validate_berita()){
+            List<infoBerita> i = (List<infoBerita>) dib.getListBeritaOperator(op);
             getRequest().setAttribute("daftar_berita", i.iterator());
         }
         else{
@@ -40,10 +39,23 @@ public class listBerita extends Boundary {
             }
             
             }
-        }
+        
+    }
 
+        boolean check() {
+        DaftarUser dm = new DaftarUser();
+        HttpSession session = getRequest().getSession();
+        String u = (String) session.getAttribute("username");
+        if (dm.getOperator(u) != null ) {
+            return true;
+        }
+        return false;
+    }
+    
     private boolean validate_berita(){
         DaftarInfoBerita dib = new DaftarInfoBerita();
+         HttpSession session = getRequest().getSession();
+        String op = (String) session.getAttribute("username");
         int xx = dib.countIBOp(op);
         
         if( xx == 0){

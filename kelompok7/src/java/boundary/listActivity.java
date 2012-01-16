@@ -6,6 +6,7 @@ package boundary;
 
 
 import entity.DaftarBooking;
+import entity.DaftarUser;
 import entity.operator;
 import java.io.IOException;
 import java.util.List;
@@ -26,8 +27,10 @@ public class listActivity extends Boundary {
       setMessage("");
         DaftarBooking dib = new DaftarBooking();
         HttpSession session = getRequest().getSession();
-        String mem = (String) session.getAttribute("username.username");
-        if(validate_book()){
+        String mem = (String) session.getAttribute("username");
+        //if(check()){
+        if (session.getAttribute("username") != null ) {
+                if(validate_book()){
             List<DaftarBooking> i = dib.getBO(mem);
             getRequest().setAttribute("daftar_book", i.iterator());
         }
@@ -38,9 +41,22 @@ public class listActivity extends Boundary {
                 Logger.getLogger(listActivity.class.getName()).log(Level.SEVERE, null, ex);
             }
             
-            }
+            
         }
-
+    }   
+    }
+        
+        
+        boolean check() {
+        DaftarUser dm = new DaftarUser();
+        HttpSession session = getRequest().getSession();
+        String u = (String) session.getAttribute("name");
+        //if (dm.getMember(u) != null ) {
+            return true;
+        //}
+        //return false;
+    }  
+        
     private boolean validate_book(){
         DaftarBooking dib = new DaftarBooking();
         int xx = dib.getJumlahBooking();

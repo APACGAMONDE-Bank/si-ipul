@@ -1,9 +1,7 @@
 package boundary;
 
-import entity.members;
 import entity.DaftarUser;
 import entity.operator;
-import helper.check;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -28,7 +26,6 @@ public class editProfilOperator extends Boundary {
     protected void process() {
 
         setMessage("");
-        if (check()){
         if (getRequest().getParameter("act") != null && getRequest().getParameter("act").equals("add")) {
             HttpSession session = getRequest().getSession();
             String n = getRequest().getParameter("name");
@@ -39,45 +36,46 @@ public class editProfilOperator extends Boundary {
             try {    
                     if (validate_field()) {
                             DaftarUser dm = new DaftarUser();
-                            operator m = (operator) session.getAttribute("username");
+                            UserJpaController d = new UserJpaController();
+                            //String uname = (String) session.getAttribute("username");
+                            operator m = (operator) session.getAttribute("op");
                                 m.setNameOp(n);
                                 m.setPassword(p);
                                 m.setAddressOp(a);
                                 m.setHandphoneOp(h);
                                 m.setEmailOp(e);
+                                session.setAttribute("name", n);
+                                session.setAttribute("hp", h);
+                                session.setAttribute("email", e);
+                                session.setAttribute("address",a);
                     try {
-                        dm.editOperator(m);
+                        d.edit(m);
                     } catch (NonexistentEntityException ex) {
-                        Logger.getLogger(editProfilOperator.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(editProfil.class.getName()).log(Level.SEVERE, null, ex);
                     } catch (Exception ex) {
-                        Logger.getLogger(editProfilOperator.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(editProfil.class.getName()).log(Level.SEVERE, null, ex);
                     }
                     }
                     else{
                         getResponse().sendRedirect("fieldKosong");
                         }
-                    //getResponse().sendRedirect("homeMember");
+                    getResponse().sendRedirect("homeOperator");
             } catch (IOException ex) {
-                Logger.getLogger(editProfilOperator.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(editProfil.class.getName()).log(Level.SEVERE, null, ex);
             }
     
-            }
-        }
-        try {
-            getResponse().sendRedirect("login");
-        } catch (IOException ex) {
-            Logger.getLogger(editProfilOperator.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    boolean check() {
+
+        boolean check() {
         DaftarUser dm = new DaftarUser();
         HttpSession session = getRequest().getSession();
-        if (dm.getOperator("username") != null ) {
+        String u = (String) session.getAttribute("username");
+        if (dm.getOperator(u) != null ) {
             return true;
         }
         return false;
-    }        
+    }         
             
     boolean validate_field() {
         

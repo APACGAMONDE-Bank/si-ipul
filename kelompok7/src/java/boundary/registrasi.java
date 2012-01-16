@@ -78,10 +78,10 @@ public class registrasi extends Boundary {
         String handphone = getRequest().getParameter("handphone");
         String email = getRequest().getParameter("email");
         if(username == null||password == null||address == null||handphone == null||email == null){
-            return false;
-        /*}
+            return false;}
+        
         if(username.trim().equals("")||password.trim().equals("")||address.trim().equals("")||handphone.trim().equals("")||email.trim().equals("")){
-            return false;*/
+            return false;
         }
 
         return true;

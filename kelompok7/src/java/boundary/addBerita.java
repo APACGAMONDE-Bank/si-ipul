@@ -1,19 +1,14 @@
 package boundary;
 
-import boundary.Boundary;
 import entity.DaftarInfoBerita;
 import entity.DaftarUser;
 import entity.infoBerita;
-import entity.members;
-import entity.operator;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpSession;
 
 public class addBerita extends Boundary {
-
-
 
     public addBerita(){
         super();
@@ -26,7 +21,7 @@ public class addBerita extends Boundary {
         setMessage("");
 
          if (getRequest().getParameter("act") != null && getRequest().getParameter("act").equals("add")) {
-             try{
+                 if(check()){
                 //if (validate_field()) {
                         DaftarInfoBerita dib = new DaftarInfoBerita();
                         if (getRequest().getParameter("picture") != null){
@@ -54,17 +49,31 @@ public class addBerita extends Boundary {
                             m.setTitle(getRequest().getParameter("title"));                            
                             dib.tambahInfoBerita(m);
                         }
-                //} else {
-                //    getResponse().sendRedirect("fieldKosong");
-                //}
-                    getResponse().sendRedirect("homeOperator");
+                    try {
+                        //} else {
+                        //    getResponse().sendRedirect("fieldKosong");
+                        //}
+                            getResponse().sendRedirect("homeOperator");
+                    } catch (IOException ex) {
+                        Logger.getLogger(addBerita.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }try {
+                    getResponse().sendRedirect("loginOp");
                 } catch (IOException ex) {
                     Logger.getLogger(addBerita.class.getName()).log(Level.SEVERE, null, ex);
                 }
+                }
             } 
-        }
     
-
+       boolean check() {
+        /*DaftarUser dm = new DaftarUser();
+        HttpSession session = getRequest().getSession();
+        String u = (String) session.getAttribute("username");
+        if (dm.getMember(u) != null ) {
+            return true;
+        }*/
+        return true;
+    } 
 
     
 

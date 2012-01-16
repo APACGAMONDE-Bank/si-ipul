@@ -42,12 +42,16 @@ public class editProfil extends Boundary {
                             DaftarUser dm = new DaftarUser();
                             UserJpaController d = new UserJpaController();
                             //String uname = (String) session.getAttribute("username");
-                            members m = (members) session.getAttribute("username");
+                            members m = (members) session.getAttribute("member");
                                 m.setNameMb(n);
                                 m.setPassword(p);
                                 m.setAddressMb(a);
                                 m.setHandphoneMb(h);
                                 m.setEmailMb(e);
+                                session.setAttribute("name", n);
+                                session.setAttribute("hp", h);
+                                session.setAttribute("email", e);
+                                session.setAttribute("address",a);
                     try {
                         d.edit(m);
                     } catch (NonexistentEntityException ex) {
@@ -59,7 +63,7 @@ public class editProfil extends Boundary {
                     else{
                         getResponse().sendRedirect("fieldKosong");
                         }
-                    //getResponse().sendRedirect("homeMember");
+                    getResponse().sendRedirect("homeMember");
             } catch (IOException ex) {
                 Logger.getLogger(editProfil.class.getName()).log(Level.SEVERE, null, ex);
             }

@@ -1,6 +1,5 @@
 package entity;
 
-import entity.operator;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -90,13 +89,12 @@ public class DaftarUser {
         return jumlahOperator;
     }
 
-    /*public List<members> memberTerbaru() {
+    public List<members> memberAll() {
         List<members> member = null;
         EntityManager em = null;
         try {
             em = getEntityManager();
-            Query q = em.createQuery("SELECT object(o) FROM member as o ORDER BY o.username DESC");
-            q.setMaxResults(10);
+            Query q = em.createQuery("SELECT object(o) FROM members as o ORDER BY o.username DESC");
             member = q.getResultList();
 
         } catch (javax.persistence.EntityNotFoundException e) {
@@ -106,7 +104,24 @@ public class DaftarUser {
             }
         }
         return member;
-    }*/
+    }
+
+    public List<operator> operatorAll() {
+        List<operator> op = null;
+        EntityManager em = null;
+        try {
+            em = getEntityManager();
+            Query q = em.createQuery("SELECT object(o) FROM operator as o ORDER BY o.username DESC");
+            op = q.getResultList();
+
+        } catch (javax.persistence.EntityNotFoundException e) {
+        } finally {
+            if (em != null) {
+                em.close();
+            }
+        }
+        return op;
+    }
     
     public members getMember(String username){
         members member = null;
@@ -145,6 +160,8 @@ public class DaftarUser {
 
         return ad;
     }
+    
+    
     
     public operator getOperator(String username){
         operator op = null;

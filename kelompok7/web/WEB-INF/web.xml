@@ -120,6 +120,14 @@
         <servlet-name>editProfilOp</servlet-name>
         <servlet-class>boundary.editProfilOperator</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>confirmBooking</servlet-name>
+        <servlet-class>boundary.confirmBooking</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>history</servlet-name>
+        <servlet-class>boundary.listHistoryBooking</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>fieldKosong</servlet-name>
         <url-pattern>/error</url-pattern>
@@ -239,6 +247,14 @@
     <servlet-mapping>
         <servlet-name>editProfilOp</servlet-name>
         <url-pattern>/edit-profil-op</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>confirmBooking</servlet-name>
+        <url-pattern>/confirmBook</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>history</servlet-name>
+        <url-pattern>/history</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

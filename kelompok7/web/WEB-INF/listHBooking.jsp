@@ -1,3 +1,4 @@
+<%@page import="boundary.listBooking"%>
 <%@page import="entity.booking"%>
 <%@page import="entity.infoBerita"%>
 <%@page import="java.util.Iterator"%>
@@ -8,21 +9,13 @@
    "http://www.w3.org/TR/html4/loose.dtd">
 
 <html>
-            <%
-String username=(String) session.getAttribute("name");
-if(username==null) username="";
-%>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Daftar Booking</title>
     </head>
     <body>
-        <h1>Daftar Booking <%=username%></h1>
-        <a href ="logout">Logout</a>
-        <a href ="edit-profil">Edit Profil</a>
-        <a href ="list_activity">Activity</a>
-        <a href ="list_lapangan">Daftar Lapangan</a>
-        <a href ="booking_online">Booking Lapangan</a>
+        <h1>Daftar Booking</h1>
+        <a href ="list_booking">Back</a>
         <table border="1">
             <thead>
                 <tr>
@@ -44,7 +37,6 @@ if(username==null) username="";
                     <td><%=(no)%></td>
                     <td><%=(b.getDateBook())%></td>
                     <td><%=(b.getLapangan())%></td>
-                    <td><a href="view_lapangan">show</a></td>
                 </tr>
                 <%
                 }

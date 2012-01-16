@@ -27,8 +27,8 @@ public class homeMember extends Boundary {
         HttpSession session = getRequest().getSession();
         members user = new members();
         DaftarUser du = new DaftarUser();
-        //if (check()){
-        if (session.getAttribute("username") != null ) {
+        if (check()){
+        //if (session.getAttribute("username") != null ) {
             String username = (String) session.getAttribute("username.username");
             user = du.getMember(username);
         } else {
@@ -41,10 +41,12 @@ public class homeMember extends Boundary {
         }
     }
         
+
         boolean check() {
         DaftarUser dm = new DaftarUser();
         HttpSession session = getRequest().getSession();
-        if (dm.getMember("username.username") != null ) {
+        String u = (String) session.getAttribute("username");
+        if (dm.getMember(u) != null ) {
             return true;
         }
         return false;

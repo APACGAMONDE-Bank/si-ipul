@@ -1,3 +1,4 @@
+<%@page import="boundary.listBooking"%>
 <%@page import="entity.booking"%>
 <%@page import="entity.infoBerita"%>
 <%@page import="java.util.Iterator"%>
@@ -15,8 +16,12 @@
     <body>
         <h1>Daftar Booking</h1>
         <a href ="logout">Logout</a>
-        <a href ="edit-profil">Edit Profil</a>
-        <a href ="add_booking">Tambah Berita</a>
+        <a href ="edit-profil-op">Edit Profil</a>
+        <a href ="list_berita">Berita</a>
+        <a href ="list_booking">Booking</a>
+        <a href ="add_berita">Tambah Berita</a>
+        <a href ="add_lapangan">Tambah Lapangan</a>
+        <a href ="history">History Booking Lapangan</a>
         <table border="1">
             <thead>
                 <tr>
@@ -38,7 +43,7 @@
                     <td><%=(no)%></td>
                     <td><%=(b.getDateBook())%></td>
                     <td><%=(b.getLapangan())%></td>
-                    <td><a href="view_lapangan">show</a></td>
+                    <td><a href="confirmBook?lap=<%=(b.getid())%>">confirm</a></td>
                 </tr>
                 <%
                 }

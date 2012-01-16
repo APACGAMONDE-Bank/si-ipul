@@ -26,18 +26,30 @@ public class homeAdmin extends Boundary {
         HttpSession session = getRequest().getSession();
         members user = new members();
         DaftarUser du = new DaftarUser();
-        if (session.getAttribute("username") != null) {
+        if (check()){
+        //if (session.getAttribute("username") != null) {
             String username = (String) session.getAttribute("username.username");
             user = du.getMember(username);
         } else {
             try {
-                getResponse().sendRedirect("login");
+                getResponse().sendRedirect("loginAd");
             } catch (IOException ex) {
                 Logger.getLogger(homeAdmin.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
 
+    
+        boolean check() {
+        DaftarUser dm = new DaftarUser();
+        HttpSession session = getRequest().getSession();
+        String u = (String) session.getAttribute("username");
+        if (dm.getAdmin(u) != null ) {
+            return true;
+        }
+        return false;
+    }  
+        
     private boolean validate_lapangan(){
         DaftarLapangan dl = new DaftarLapangan();
         int xx = dl.getJumlahLapangan();

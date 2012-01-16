@@ -24,5 +24,7 @@
         <br>
         <a href ="logout">Logout</a>
         <a href ="addUser">Add User</a>
+        <a href ="list_user">Daftar User</a>
+        <a href ="delete-user">Delete User</a>
     </body>
 </html>

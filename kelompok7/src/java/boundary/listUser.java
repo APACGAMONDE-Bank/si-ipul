@@ -12,6 +12,8 @@ import java.io.IOException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import jpa.UserJpaController;
+import jpa.exceptions.NonexistentEntityException;
 
 public class listUser extends Boundary {
 
@@ -25,9 +27,10 @@ public class listUser extends Boundary {
       setMessage("");
         DaftarUser dib = new DaftarUser();
         if(validate_user()){
-            List<members> i = (List<members>) dib.getMember(null);
-            List<operator> ii = (List<operator>) dib.getOperator(null);
+            List<members> i = (List<members>) dib.memberAll();
+            List<operator> a = (List<operator>) dib.operatorAll();
             getRequest().setAttribute("daftar_user", i.iterator());
+            getRequest().setAttribute("daftar_op", a.iterator());
                 }
         else{
             try {
@@ -37,6 +40,14 @@ public class listUser extends Boundary {
                 }
             }
         }
+    
+    private void delUser() throws NonexistentEntityException{
+    UserJpaController d = new UserJpaController();
+    members m = new members();
+    d.destroy(getRequest().getParameter("username"));
+                    }
+    
+                        
 
     private boolean validate_user(){
         DaftarUser dib = new DaftarUser();

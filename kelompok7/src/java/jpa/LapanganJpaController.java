@@ -36,12 +36,12 @@ public class LapanganJpaController {
         }
     }
 
-    public void edit(lapangan lapangan) throws NonexistentEntityException, Exception {
+    /*public void edit(String l) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            lapangan = em.merge(lapangan);
+            l = em.merge(l);
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
@@ -57,8 +57,29 @@ public class LapanganJpaController {
                 em.close();
             }
         }
-    }
+    }*/
 
+        public void editLap(lapangan lap) throws NonexistentEntityException {
+        EntityManager em = null;
+        try {
+            em = getEntityManager();
+            em.getTransaction().begin();
+            lapangan l;
+            try {
+                l = em.getReference(lapangan.class, lap);
+                l.getId();
+            } catch (EntityNotFoundException enfe) {
+                throw new NonexistentEntityException("The lapangan with username " + lap + " no longer exists.", enfe);
+            }
+            em.merge(l);
+            em.getTransaction().commit();
+        } finally {
+            if (em != null) {
+                em.close();
+            }
+        }
+    }
+    
     public void destroy(Long id) throws NonexistentEntityException {
         EntityManager em = null;
         try {

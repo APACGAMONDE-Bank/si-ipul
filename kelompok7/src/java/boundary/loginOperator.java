@@ -39,6 +39,7 @@ public loginOperator(){
         if (validate_field()) {
             operator op = du.getOperator(username);
             if (username.equals(op.getUsername()) && password.equals(op.getPassword())){
+                session.setAttribute("op", op);
                 session.setAttribute("username", op.getUsername());
                 session.setAttribute("name", op.getNameOp());
                 session.setAttribute("hp", op.getHandphoneOp());

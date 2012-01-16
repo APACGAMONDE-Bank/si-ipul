@@ -137,7 +137,7 @@ public class DaftarLapangan {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            em.persist(lapangan);
+            em.merge(lapangan);
             em.getTransaction().commit();
         } finally {
             if (em != null) {

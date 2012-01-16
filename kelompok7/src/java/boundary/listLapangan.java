@@ -5,12 +5,15 @@
 package boundary;
 
 import entity.DaftarLapangan;
+import entity.infoBerita;
 import entity.lapangan;
 import entity.operator;
 import java.io.IOException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import jpa.LapanganJpaController;
+import jpa.exceptions.NonexistentEntityException;
 
 public class listLapangan extends Boundary {
     private operator operator;
@@ -37,6 +40,15 @@ public class listLapangan extends Boundary {
             
             }
         }
+
+    private void delLap() throws NonexistentEntityException{
+        DaftarLapangan dl = new DaftarLapangan();
+        LapanganJpaController j = new LapanganJpaController();
+        infoBerita m = new infoBerita();
+        Long i = Long.parseLong(getRequest().getParameter("id"));
+        j.destroy(i);
+        }
+  
 
     private boolean validate_lapangan(){
         DaftarLapangan dl = new DaftarLapangan();

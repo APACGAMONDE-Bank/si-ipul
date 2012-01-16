@@ -15,12 +15,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpSession;
 
-public class listBooking extends Boundary {
+public class listHistoryBooking extends Boundary {
     private operator operator;
 
-    public listBooking() {
+    public listHistoryBooking() {
         super();
-        setTemplate("/WEB-INF/listBooking.jsp");
+        setTemplate("/WEB-INF/listHBooking.jsp");
     }
 
     @Override
@@ -30,7 +30,7 @@ public class listBooking extends Boundary {
         HttpSession session = getRequest().getSession();
         operator op = (operator) session.getAttribute("op");
         if(validate_book()){
-            List<DaftarBooking> i = dib.getBOp(op);
+            List<DaftarBooking> i = dib.getHistory(op);
             getRequest().setAttribute("daftar_book", i.iterator());
         }
         else{

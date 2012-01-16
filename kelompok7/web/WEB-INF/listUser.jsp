@@ -1,3 +1,4 @@
+<%@page import="boundary.listBerita"%>
 <%@page import="entity.operator"%>
 <%@page import="entity.members"%>
 <%@page import="entity.infoBerita"%>
@@ -28,6 +29,7 @@
             </thead>
             <tbody>
                 <%
+                
                 Iterator<members> i = (Iterator<members>) request.getAttribute("daftar_user");
                 int no = 0;
                 while(i.hasNext()){
@@ -40,7 +42,8 @@
                     <td><%=(im.getNameMb())%></td>
                     <td><%=(im.getAddressMb())%></td>
                     <td><a href="editMember">Edit</a></td>
-                    <td><a href="deleteMember">Delete</a></td>
+                    <td><a href=delete-user?username=<%=(im.getUsername())%>>Delete</a></td>
+                    
                 </tr>
                 <%
                 }
@@ -55,19 +58,19 @@
             </thead>
             <tbody>
                 <%
-                Iterator<operator> ii = (Iterator<operator>) request.getAttribute("daftar_user");
+                Iterator<operator> ii = (Iterator<operator>) request.getAttribute("daftar_op");
                 int nom = 0;
                 while(ii.hasNext()){
-                    operator io= ii.next();
+                    operator ip= ii.next();
                     no++;
                 %>
                 
                 <tr>
                     <td><%=(no)%></td>
-                    <td><%=(io.getNameOp())%></td>
-                    <td><%=(io.getAddressOp())%></td>
-                     <td><a href="editOperator">Edit</a></td>
-                    <td><a href="deleteOperator">Delete</a></td>
+                    <td><%=(ip.getNameOp())%></td>
+                    <td><%=(ip.getAddressOp())%></td>
+                     <td><a href="editOperator"<%=(ip.getUsername())%>>Edit</a></td>
+                    <td><a href="deleteOperator"<%=(ip.getUsername())%>>Delete</a></td>
                 </tr>
                 <%
                 }

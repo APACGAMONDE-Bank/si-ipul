@@ -26,13 +26,15 @@ public class addLapangan extends Boundary {
             try {
                 if (validate_field()) {
                         HttpSession session = getRequest().getSession();
-                        operator op = (operator) session.getAttribute("username");
+                        operator op = (operator) session.getAttribute("op");
+                        operator p = (operator) session.getAttribute("username");
+                        String b = (String) p;
                         DaftarLapangan dl = new DaftarLapangan();
-                        lapangan l = dl.getLapangan(op);
+                        lapangan l = dl.getLapangan(p);
                         if (l == null) {
                             l = new lapangan();
                             l.setAddressLap(getRequest().getParameter("address"));
-                            l.setOperator(op);
+                            l.setOperator(p);
                             dl.tambahLapangan(l);
                         }
                 } else {

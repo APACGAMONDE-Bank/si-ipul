@@ -1,10 +1,7 @@
 package boundary;
 
 import entity.DaftarInfoBerita;
-import entity.DaftarUser;
 import entity.infoBerita;
-import jpa.UserJpaController;
-import entity.members;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,13 +24,16 @@ public class deleteBerita extends Boundary {
         if (getRequest().getParameter("act") != null && getRequest().getParameter("act").equals("add")) {
             try {
                 if (validate_field()) {
-                        DaftarInfoBerita dm = new DaftarInfoBerita();
-                            infoBerita m = new infoBerita();
-                            dm.hapusInfoBerita(getRequest().getParameter("id"));
+                    DaftarInfoBerita dm = new DaftarInfoBerita();
+                    try {
+                        dm.hapusInfo(getRequest().getParameter("id"));
+                    } catch (NonexistentEntityException ex) {
+                        Logger.getLogger(deleteBerita.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 } else {
                     getResponse().sendRedirect("fieldKosong");
                 }
-                getResponse().sendRedirect("homeOperator");
+                getResponse().sendRedirect("login");
             } catch (IOException ex) {
                 Logger.getLogger(deleteBerita.class.getName()).log(Level.SEVERE, null, ex);
             }

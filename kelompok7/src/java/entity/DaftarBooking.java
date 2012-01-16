@@ -45,14 +45,14 @@ public class DaftarBooking {
         return jumlahBooking;
     }
     
-    public int getJumlahBookingOp(String username) {
+    public int getJumlahBookingOp(operator username) {
 
         if (jumlahBooking == -1) {
             EntityManager em = null;
             try {
                 em = getEntityManager();
-                Query q = em.createQuery("SELECT count(o) booking FROM booking o, lapangan l WHERE o.lap = l.IDLAP and l.operator = :username");
-                q.setParameter("username", username);
+                Query q = em.createQuery("SELECT count(o) booking FROM booking o, lapangan l WHERE o.lap = l.IDLAP and l.operator = :operator");
+                q.setParameter("operator", username);
                 Number jumlah = (Number) q.getSingleResult();
                 jumlahBooking = jumlah.intValue();
 
@@ -122,13 +122,32 @@ public class DaftarBooking {
         return booking;
     }
     
-    public List<DaftarBooking> getBOp (String username){
+    public List<DaftarBooking> getBOp (operator op){
         List<DaftarBooking> booking = null;
         EntityManager em = null;
         try {
             em = getEntityManager();
-            Query q = em.createQuery("SELECT object(o) FROM booking o, lapangan l WHERE o.lap= l.IDLAP and l.operator = :username");
-            q.setParameter("username", username);
+            Query q = em.createQuery("SELECT object(o) FROM booking o, lapangan l WHERE o.lap= l.IDLAP and l.statLap = 1 and l.operator = :username");
+            q.setParameter("username", op);
+            booking = q.getResultList();
+        }catch(NoResultException e){
+            
+        }finally {
+            if (em != null) {
+                em.close();
+            }
+        }
+
+        return booking;
+    }
+    
+    public List<DaftarBooking> getHistory (operator op){
+        List<DaftarBooking> booking = null;
+        EntityManager em = null;
+        try {
+            em = getEntityManager();
+            Query q = em.createQuery("SELECT object(o) FROM booking o, lapangan l WHERE o.lap= l.IDLAP and l.statLap = 2 and l.operator = :username");
+            q.setParameter("username", op);
             booking = q.getResultList();
         }catch(NoResultException e){
             

@@ -18,7 +18,7 @@ public class deleteUser extends Boundary {
 
     public deleteUser(){
         super();
-        setTemplate("/WEB-INF/deleteUser.jsp");
+        setTemplate("/WEB-INF/listUser.jsp");
     }
 
     @Override
@@ -26,25 +26,18 @@ public class deleteUser extends Boundary {
 
         setMessage("");
 
-        if (getRequest().getParameter("act") != null && getRequest().getParameter("act").equals("add")) {
-            try {
-                if (validate_field()) {
                         DaftarUser dm = new DaftarUser();
                         UserJpaController d = new UserJpaController();
-                            members m = new members();
+                        members m = new members();
                     try {
                         d.destroy(getRequest().getParameter("username"));
                     } catch (NonexistentEntityException ex) {
                         Logger.getLogger(deleteUser.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                } else {
-                    getResponse().sendRedirect("fieldKosong");
-                }
-                getResponse().sendRedirect("homeAdmin");
-            } catch (IOException ex) {
-                Logger.getLogger(deleteUser.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        } 
+        }try {
+            getResponse().sendRedirect("list_user");
+        } catch (IOException ex) {
+            Logger.getLogger(deleteUser.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
             

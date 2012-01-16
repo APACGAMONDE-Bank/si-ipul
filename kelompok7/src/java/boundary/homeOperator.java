@@ -6,10 +6,8 @@ package boundary;
 
 import entity.DaftarLapangan;
 import entity.DaftarUser;
-import entity.lapangan;
 import entity.operator;
 import java.io.IOException;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpSession;
@@ -28,11 +26,12 @@ public class homeOperator extends Boundary {
         operator user = new operator();
         DaftarUser du = new DaftarUser();
         if (check()){
-            String username = (String) session.getAttribute("username.username");
+        //if (session.getAttribute("username") != null ) {
+            String username = (String) session.getAttribute("username");
             user = du.getOperator(username);
         } else {
             try {
-                getResponse().sendRedirect("login");
+                getResponse().sendRedirect("loginOp");
             } catch (IOException ex) {
                 Logger.getLogger(homeMember.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -44,7 +43,8 @@ public class homeOperator extends Boundary {
         boolean check() {
         DaftarUser dm = new DaftarUser();
         HttpSession session = getRequest().getSession();
-        if (dm.getOperator("username") != null ) {
+        String u = (String) session.getAttribute("username");
+        if (dm.getOperator(u) != null ) {
             return true;
         }
         return false;

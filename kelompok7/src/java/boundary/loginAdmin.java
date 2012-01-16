@@ -42,6 +42,8 @@ public loginAdmin(){
             if 
                     (username.equals(ad.getUsername()) && password.equals(ad.getPassword())){
                 try {
+                    session.setAttribute("admin", ad);
+                    session.setAttribute("username", ad.getUsername());
                     getResponse().sendRedirect("homeAdmin");
                 } catch (IOException ex) {
                     Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);

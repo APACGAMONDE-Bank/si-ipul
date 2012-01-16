@@ -40,6 +40,7 @@ public login(){
         if (validate_field()) {
             members member = du.getMember(username);
             if (username.equals(member.getUsername()) && password.equals(member.getPassword())) {
+                session.setAttribute("member", member);
                 session.setAttribute("username", member.getUsername());
                 session.setAttribute("name", member.getNameMb());
                 session.setAttribute("hp", member.getHandphoneMb());
